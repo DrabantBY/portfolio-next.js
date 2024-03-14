@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import HeaderComponent from "@/components/Header";
+import FooterComponent from "@/components/Footer";
 
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import "@mantine/core/styles.css";
@@ -23,6 +24,7 @@ const RootLayout = ({
       <MantineProvider>
         <HeaderComponent />
         <main>{children}</main>
+        <FooterComponent />
       </MantineProvider>
     </body>
   </html>

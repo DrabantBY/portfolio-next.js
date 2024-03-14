@@ -2,7 +2,7 @@ import Link from "next/link";
 import { NavLink } from "@mantine/core";
 
 type RouterLinkPropsType = {
-  href: { pathname: string; query: { page: number } };
+  href: string;
   label: string;
   active: boolean;
 };

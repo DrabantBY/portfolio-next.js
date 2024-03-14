@@ -7,13 +7,9 @@ import { Container, Group } from "@mantine/core";
 import RouterLinkComponent from "../UI/RouterLink";
 import LogoLink from "../UI/LogoLink";
 
-const routers = [
-  { pathname: "character", query: { page: 1 } },
-  { pathname: "location", query: { page: 1 } },
-  { pathname: "episode", query: { page: 1 } },
-];
+const routes = ["character", "episode", "location"];
 
-const HeaderComponent = () => {
+export default function HeaderComponent() {
   const segment = useSelectedLayoutSegment();
 
   return (
@@ -22,12 +18,12 @@ const HeaderComponent = () => {
         <Group justify="space-between">
           <LogoLink active={!segment} />
           <Group justify="center" gap="xs">
-            {routers.map((router) => (
+            {routes.map((route) => (
               <RouterLinkComponent
-                key={router.pathname}
-                href={router}
-                label={router.pathname}
-                active={segment === router.pathname}
+                key={route}
+                href={route}
+                label={route}
+                active={segment === route}
               />
             ))}
           </Group>
@@ -35,5 +31,4 @@ const HeaderComponent = () => {
       </Container>
     </header>
   );
-};
-export default HeaderComponent;
+}
