@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Container } from "@mantine/core";
 
 export const metadata: Metadata = {
-  title: "Morty & Rick API",
+  title: "Morty & Rick",
   description: "api from https://rickandmortyapi.com/",
 };
 

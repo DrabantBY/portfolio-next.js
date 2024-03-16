@@ -1,7 +1,11 @@
 import { Metadata } from "next";
-import { Container } from "@mantine/core";
+import { Container, Grid } from "@mantine/core";
+import type {
+  CharacterDataType,
+  CharacterSearchParamsType,
+} from "@/types/character";
+import CharacterCard from "@/components/CharacterCard";
 import { getUrlWithSearchParams } from "@/utils/handleUrlWithSearchParams";
-import type { CharacterDataType, CharacterSearchParamsType } from "./types";
 
 export const metadata: Metadata = {
   title: "page | character",
@@ -26,11 +30,11 @@ export default async function CharacterPage({
 
   return (
     <Container size="xl">
-      <ul>
+      <Grid gutter="md">
         {results.map((result) => (
-          <li key={result.id}>{result.name}</li>
+          <CharacterCard key={result.id} {...result}></CharacterCard>
         ))}
-      </ul>
+      </Grid>
     </Container>
   );
 }

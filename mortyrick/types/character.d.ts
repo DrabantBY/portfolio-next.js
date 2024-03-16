@@ -1,6 +1,15 @@
 import type { DataType } from "@/types/data";
 
-type CharacterType = {
+export type CharacterSearchParamsType = {
+  page?: string;
+  name?: string;
+  status?: "alive" | "dead" | "unknown";
+  species?: string;
+  type?: string;
+  gender?: "female" | "male" | "genderless" | "unknown";
+};
+
+export type CharacterType = {
   id: number;
   name: string;
   status: string;
@@ -16,12 +25,3 @@ type CharacterType = {
 };
 
 export type CharacterDataType = DataType<CharacterType>;
-
-export type CharacterSearchParamsType = {
-  page?: string;
-  name?: string;
-  status?: "alive" | "dead" | "unknown";
-  species?: string;
-  type?: string;
-  gender?: "female" | "male" | "genderless" | "unknown";
-};
