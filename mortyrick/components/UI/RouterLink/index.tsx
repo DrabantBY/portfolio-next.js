@@ -7,15 +7,15 @@ type RouterLinkPropsType = {
   active: boolean;
 };
 
-const RouterLinkComponent = (props: RouterLinkPropsType) => (
-  <NavLink
-    component={Link}
-    {...props}
-    variant="light"
-    w={120}
-    ta="center"
-    tt="uppercase"
-  />
-);
-
-export default RouterLinkComponent;
+export default function RouterLinkComponent(props: RouterLinkPropsType) {
+  return (
+    <NavLink
+      component={Link}
+      {...props}
+      variant="light"
+      w={120}
+      ta="center"
+      tt="uppercase"
+    />
+  );
+}

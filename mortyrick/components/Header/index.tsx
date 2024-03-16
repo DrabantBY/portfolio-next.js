@@ -1,15 +1,14 @@
 "use client";
 
 import { useSelectedLayoutSegment } from "next/navigation";
-
 import { Container, Group } from "@mantine/core";
-
-import RouterLinkComponent from "../UI/RouterLink";
+import RouterLink from "../UI/RouterLink";
 import LogoLink from "../UI/LogoLink";
+import BtnTheme from "../UI/BtnTheme";
 
 const routes = ["character", "episode", "location"];
 
-export default function HeaderComponent() {
+export default function Header() {
   const segment = useSelectedLayoutSegment();
 
   return (
@@ -19,7 +18,7 @@ export default function HeaderComponent() {
           <LogoLink active={!segment} />
           <Group justify="center" gap="xs">
             {routes.map((route) => (
-              <RouterLinkComponent
+              <RouterLink
                 key={route}
                 href={route}
                 label={route}
@@ -27,6 +26,7 @@ export default function HeaderComponent() {
               />
             ))}
           </Group>
+          <BtnTheme />
         </Group>
       </Container>
     </header>

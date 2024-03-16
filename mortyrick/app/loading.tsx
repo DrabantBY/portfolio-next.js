@@ -1,10 +1,5 @@
-import { Center, Loader } from "@mantine/core";
-const Loading = () => {
-  return (
-    <Center>
-      <Loader />
-    </Center>
-  );
-};
+import { Loader } from "@mantine/core";
 
-export default Loading;
+export default function Loading() {
+  return <Loader className="loader" size={50} />;
+}

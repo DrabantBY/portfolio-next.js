@@ -1,39 +1,58 @@
 import { Button, Container, Group } from "@mantine/core";
+import {
+  IconFileTypeDoc,
+  IconFileText,
+  IconFileDollar,
+  IconArrowBigRightLine,
+} from "@tabler/icons-react";
 
-const links = [
-  {
-    label: "docs",
-    href: "https://rickandmortyapi.com/documentation",
-  },
-  {
-    label: "about",
-    href: "https://rickandmortyapi.com/about",
-  },
-  {
-    label: "boost",
-    href: "https://rickandmortyapi.com/support-us",
-  },
-];
-
-export default function FooterComponent() {
+export default function Footer() {
   return (
-    <Container size="xl" py="sm">
-      <Group justify="center" gap="xl">
-        {links.map(({ label, href }) => (
+    <footer>
+      <Container size="xl" py="sm">
+        <Group justify="center" gap="xl">
           <Button
-            key={label}
             component="a"
-            href={href}
+            href="https://rickandmortyapi.com/documentation"
             target="_blank"
-            w={100}
+            w={120}
             tt="uppercase"
             size="xs"
             variant="outline"
+            leftSection={<IconFileTypeDoc size={18} />}
+            rightSection={<IconArrowBigRightLine size={18} />}
           >
-            {label}
+            docs
           </Button>
-        ))}
-      </Group>
-    </Container>
+          <Button
+            component="a"
+            href="https://rickandmortyapi.com/about"
+            target="_blank"
+            w={120}
+            tt="uppercase"
+            size="xs"
+            variant="outline"
+            leftSection={<IconFileText size={18} />}
+            rightSection={<IconArrowBigRightLine size={18} />}
+          >
+            about
+          </Button>
+
+          <Button
+            component="a"
+            href="https://rickandmortyapi.com/support-us"
+            target="_blank"
+            w={120}
+            tt="uppercase"
+            size="xs"
+            variant="outline"
+            leftSection={<IconFileDollar size={18} />}
+            rightSection={<IconArrowBigRightLine size={18} />}
+          >
+            boost
+          </Button>
+        </Group>
+      </Container>
+    </footer>
   );
 }
