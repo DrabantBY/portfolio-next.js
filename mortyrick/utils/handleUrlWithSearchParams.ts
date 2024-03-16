@@ -1,8 +1,17 @@
-import { CharacterPageSearchParamsType } from "@/app/character/page";
+import { CharacterSearchParamsType } from "@/app/character/types";
+import { EpisodeSearchParamsType } from "@/app/episode/types";
+import { LocationSearchParamsType } from "@/app/location/types";
+
+type PageSearchParamsType =
+  | CharacterSearchParamsType
+  | EpisodeSearchParamsType
+  | LocationSearchParamsType;
+
+type RoutePageType = "character" | "episode" | "location";
 
 export function getUrlWithSearchParams(
-  route: string,
-  searchParams: CharacterPageSearchParamsType
+  route: RoutePageType,
+  searchParams: PageSearchParamsType
 ): string {
   const urlSearchParams = new URLSearchParams(searchParams);
 

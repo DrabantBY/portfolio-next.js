@@ -1,16 +1,9 @@
-import type { Metadata } from "next";
 import { ColorSchemeScript, MantineProvider, Stack } from "@mantine/core";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-
 import font from "./fonts";
 import "@mantine/core/styles.layer.css";
 import "./global.css";
-
-export const metadata: Metadata = {
-  title: "Morty & Rick API",
-  description: "api from https://rickandmortyapi.com/",
-};
 
 export default function RootLayout({
   children,

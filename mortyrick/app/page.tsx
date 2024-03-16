@@ -1,4 +1,10 @@
+import type { Metadata } from "next";
 import { Container } from "@mantine/core";
+
+export const metadata: Metadata = {
+  title: "Morty & Rick API",
+  description: "api from https://rickandmortyapi.com/",
+};
 
 export default function MainPage() {
   return (

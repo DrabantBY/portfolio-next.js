@@ -13,7 +13,7 @@ async function getCharacterData(
 ): Promise<CharacterDataType> {
   const url = getUrlWithSearchParams("character", searchParams);
   const response = await fetch(url);
-  const characters = (await response.json()) as Promise<CharacterDataType>;
+  const characters = await response.json();
   return characters;
 }
 
