@@ -1,30 +1,15 @@
+import { Metadata } from "next";
 import { Container } from "@mantine/core";
-
 import { getUrlWithSearchParams } from "@/utils/handleUrlWithSearchParams";
+import type { LocationSearchParamsType, LocationDataType } from "./types";
 
-import { DataType } from "@/types/data";
-
-export type LocationPageSearchParamsType = {
-  page?: string;
-  name?: string;
-  type?: string;
-  dimension?: string;
+export const metadata: Metadata = {
+  title: "page | location",
+  description: "current route",
 };
-
-type LocationType = {
-  id: number;
-  name: string;
-  type: string;
-  dimension: string;
-  residents: string[];
-  url: string;
-  created: string;
-};
-
-type LocationDataType = DataType<LocationType>;
 
 async function getLocationData(
-  searchParams: LocationPageSearchParamsType
+  searchParams: LocationSearchParamsType
 ): Promise<LocationDataType> {
   const url = getUrlWithSearchParams("location", searchParams);
   const response = await fetch(url);
@@ -35,7 +20,7 @@ async function getLocationData(
 export default async function LocationPage({
   searchParams,
 }: {
-  searchParams: LocationPageSearchParamsType;
+  searchParams: LocationSearchParamsType;
 }) {
   const { results } = await getLocationData(searchParams);
 

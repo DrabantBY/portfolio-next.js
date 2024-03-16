@@ -1,29 +1,15 @@
+import { Metadata } from "next";
 import { Container } from "@mantine/core";
-
 import { getUrlWithSearchParams } from "@/utils/handleUrlWithSearchParams";
+import type { EpisodeSearchParamsType, EpisodeDataType } from "./types";
 
-import type { DataType } from "@/types/data";
-
-export type EpisodePageSearchParamsType = {
-  page?: string;
-  name?: string;
-  episode?: string;
+export const metadata: Metadata = {
+  title: "page | episode",
+  description: "current route",
 };
-
-type EpisodeType = {
-  id: number;
-  name: string;
-  air_date: string;
-  episode: string;
-  characters: string[];
-  url: string;
-  created: string;
-};
-
-type EpisodeDataType = DataType<EpisodeType>;
 
 async function getEpisodeData(
-  searchParams: EpisodePageSearchParamsType
+  searchParams: EpisodeSearchParamsType
 ): Promise<EpisodeDataType> {
   const url = getUrlWithSearchParams("episode", searchParams);
   const response = await fetch(url);
@@ -34,7 +20,7 @@ async function getEpisodeData(
 export default async function EpisodePage({
   searchParams,
 }: {
-  searchParams: EpisodePageSearchParamsType;
+  searchParams: EpisodeSearchParamsType;
 }) {
   const { results } = await getEpisodeData(searchParams);
 

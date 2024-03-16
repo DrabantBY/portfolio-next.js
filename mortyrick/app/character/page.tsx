@@ -1,37 +1,15 @@
+import { Metadata } from "next";
 import { Container } from "@mantine/core";
-
 import { getUrlWithSearchParams } from "@/utils/handleUrlWithSearchParams";
+import type { CharacterDataType, CharacterSearchParamsType } from "./types";
 
-import type { DataType } from "@/types/data";
-
-export type CharacterPageSearchParamsType = {
-  page?: string;
-  name?: string;
-  status?: "alive" | "dead" | "unknown";
-  species?: string;
-  type?: string;
-  gender?: "female" | "male" | "genderless" | "unknown";
+export const metadata: Metadata = {
+  title: "page | character",
+  description: "current route",
 };
-
-type CharacterType = {
-  id: number;
-  name: string;
-  status: string;
-  species: string;
-  type: string;
-  gender: string;
-  origin: { name: string; url: string };
-  location: { name: string; url: string };
-  image: string;
-  episode: string[];
-  url: string;
-  created: string;
-};
-
-type CharacterDataType = DataType<CharacterType>;
 
 async function getCharacterData(
-  searchParams: CharacterPageSearchParamsType
+  searchParams: CharacterSearchParamsType
 ): Promise<CharacterDataType> {
   const url = getUrlWithSearchParams("character", searchParams);
   const response = await fetch(url);
@@ -42,7 +20,7 @@ async function getCharacterData(
 export default async function CharacterPage({
   searchParams,
 }: {
-  searchParams: CharacterPageSearchParamsType;
+  searchParams: CharacterSearchParamsType;
 }) {
   const { results } = await getCharacterData(searchParams);
 

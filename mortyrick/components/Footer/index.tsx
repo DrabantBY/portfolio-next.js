@@ -1,8 +1,8 @@
 import { Button, Container, Group } from "@mantine/core";
 import {
   IconFileTypeDoc,
-  IconFileText,
-  IconFileDollar,
+  IconUsers,
+  IconPremiumRights,
   IconArrowBigRightLine,
 } from "@tabler/icons-react";
 
@@ -32,7 +32,7 @@ export default function Footer() {
             tt="uppercase"
             size="xs"
             variant="outline"
-            leftSection={<IconFileText size={18} />}
+            leftSection={<IconUsers size={18} />}
             rightSection={<IconArrowBigRightLine size={18} />}
           >
             about
@@ -46,7 +46,7 @@ export default function Footer() {
             tt="uppercase"
             size="xs"
             variant="outline"
-            leftSection={<IconFileDollar size={18} />}
+            leftSection={<IconPremiumRights size={18} />}
             rightSection={<IconArrowBigRightLine size={18} />}
           >
             boost

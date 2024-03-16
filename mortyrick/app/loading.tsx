@@ -1,5 +1,5 @@
-import { Loader } from "@mantine/core";
+import Spinner from "@/components/UI/Spinner";
 
 export default function Loading() {
-  return <Loader className="loader" size={50} />;
+  return <Spinner />;
 }
