@@ -1,0 +1,30 @@
+"use client";
+
+import { usePathname } from "next/navigation";
+
+import { Group } from "@mantine/core";
+
+import RouterLink from "../RouterLink";
+
+const routes = [
+  { pathname: "/character", query: { page: 1 } },
+  { pathname: "/episode", query: { page: 1 } },
+  { pathname: "/location", query: { page: 1 } },
+];
+
+export default function Navigation() {
+  const pathname = usePathname();
+
+  return (
+    <Group justify="center" gap="xs">
+      {routes.map((route, index) => (
+        <RouterLink
+          key={index}
+          href={route}
+          label={route.pathname.slice(1)}
+          active={pathname === route.pathname}
+        />
+      ))}
+    </Group>
+  );
+}

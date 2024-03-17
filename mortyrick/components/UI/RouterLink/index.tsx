@@ -2,12 +2,12 @@ import Link from "next/link";
 import { NavLink } from "@mantine/core";
 
 type RouterLinkPropsType = {
-  href: string;
+  href: { pathname: string; query: { page: number } };
   label: string;
   active: boolean;
 };
 
-export default function RouterLinkComponent(props: RouterLinkPropsType) {
+export default function RouterLink(props: RouterLinkPropsType) {
   return (
     <NavLink
       component={Link}
