@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-import { Container } from "@mantine/core";
+import { Container, SimpleGrid } from "@mantine/core";
 
 import CharacterCard from "@/components/CharacterCard";
 import EpisodeCard from "@/components/EpisodeCard";
@@ -27,7 +27,13 @@ export default async function RoutePage(routeParams: RouteParamsType) {
 
   return (
     <Container size="xl">
-      {route === "character" && <CharacterCard results={results} />}
+      {route === "character" && (
+        <SimpleGrid cols={6} spacing="lg" verticalSpacing="lg">
+          {results.map((result) => (
+            <CharacterCard key={result.id} {...result} />
+          ))}
+        </SimpleGrid>
+      )}
       {route === "episode" && <EpisodeCard results={results} />}
       {route === "location" && <LocationCard results={results} />}
     </Container>
