@@ -23,5 +23,3 @@ export type CharacterType = {
   url: string;
   created: string;
 };
-
-export type CharacterDataType = DataType<CharacterType>;

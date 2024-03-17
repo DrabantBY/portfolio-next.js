@@ -1,9 +1,13 @@
 import { ColorSchemeScript, MantineProvider, Stack } from "@mantine/core";
+
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+
 import font from "./fonts";
-import "@mantine/core/styles.layer.css";
+
 import "./global.css";
+
+import "@mantine/core/styles.layer.css";
 
 export default function RootLayout({
   children,

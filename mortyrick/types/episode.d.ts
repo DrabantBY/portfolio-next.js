@@ -1,6 +1,12 @@
 import type { DataType } from "@/types/data";
 
-type EpisodeType = {
+export type EpisodeSearchParamsType = {
+  page?: string;
+  name?: string;
+  episode?: string;
+};
+
+export type EpisodeType = {
   id: number;
   name: string;
   air_date: string;
@@ -9,11 +15,3 @@ type EpisodeType = {
   url: string;
   created: string;
 };
-
-export type EpisodeSearchParamsType = {
-  page?: string;
-  name?: string;
-  episode?: string;
-};
-
-export type EpisodeDataType = DataType<EpisodeType>;

@@ -3,7 +3,7 @@ import { Container } from "@mantine/core";
 
 export const metadata: Metadata = {
   title: "Morty & Rick",
-  description: "api from https://rickandmortyapi.com/",
+  description: "data from https://rickandmortyapi.com/",
 };
 
 export default function MainPage() {
