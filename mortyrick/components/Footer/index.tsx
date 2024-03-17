@@ -9,8 +9,8 @@ import {
 
 export default function Footer() {
   return (
-    <footer>
-      <Container size="xl" py="sm">
+    <footer className="background-theme">
+      <Container size="xl" py="lg">
         <Group justify="center" gap="xl">
           <Button
             component="a"

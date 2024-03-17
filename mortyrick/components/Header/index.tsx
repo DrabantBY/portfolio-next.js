@@ -13,8 +13,8 @@ export default function Header() {
   const pathname = usePathname();
 
   return (
-    <header>
-      <Container size="xl" py="sm">
+    <header className="background-theme">
+      <Container size="xl" py="xs">
         <Group justify="space-between">
           <LogoLink active={pathname === "/"} />
           <Group justify="center" gap="xs">
