@@ -3,6 +3,7 @@ import {
   IconFileTypeDoc,
   IconUsers,
   IconPremiumRights,
+  IconBrandGithub,
   IconArrowBigRightLine,
 } from "@tabler/icons-react";
 
@@ -24,6 +25,7 @@ export default function Footer() {
           >
             docs
           </Button>
+
           <Button
             component="a"
             href="https://rickandmortyapi.com/about"
@@ -36,6 +38,20 @@ export default function Footer() {
             rightSection={<IconArrowBigRightLine size={18} />}
           >
             about
+          </Button>
+
+          <Button
+            component="a"
+            href="https://github.com/afuh/rick-and-morty-api"
+            target="_blank"
+            w={120}
+            tt="uppercase"
+            size="xs"
+            variant="outline"
+            leftSection={<IconBrandGithub size={18} />}
+            rightSection={<IconArrowBigRightLine size={18} />}
+          >
+            github
           </Button>
 
           <Button
