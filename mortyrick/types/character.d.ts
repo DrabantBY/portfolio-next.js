@@ -3,9 +3,9 @@ import type { DataType } from "@/types/data";
 export type CharacterSearchParamsType = {
   page?: string;
   name?: string;
+  type?: string;
   status?: "alive" | "dead" | "unknown";
   species?: string;
-  type?: string;
   gender?: "female" | "male" | "genderless" | "unknown";
 };
 

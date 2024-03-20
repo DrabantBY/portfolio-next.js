@@ -1,4 +1,4 @@
-import { handleRouteParams } from "@/utils/handleRouteParams";
+import { handleRouteParams } from "@/utils/handle-route-params";
 import type { RouteParamsType } from "@/types/routeParams";
 import type { DataPageType } from "@/types/data";
 

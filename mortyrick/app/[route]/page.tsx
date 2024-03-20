@@ -1,16 +1,16 @@
 import { Metadata } from "next";
 
-import { Container, SimpleGrid } from "@mantine/core";
+import { Container, Group, SimpleGrid } from "@mantine/core";
 
-import CharacterCard from "@/components/CharacterCard";
-import EpisodeCard from "@/components/EpisodeCard";
-import LocationCard from "@/components/LocationCard";
-import PerPage from "@/components/UI/PerPage";
+import CharacterCard from "@/components/cards/character-card";
+import EpisodeCard from "@/components/cards/episode-card";
+import LocationCard from "@/components/cards/location-card";
+import FilterForm from "@/components/filter-form";
+import PerPage from "@/components/ui/per-page";
 
 import getDataByRoute from "@/fetch/getDataByRoute";
 
 import type { RouteParamsType } from "@/types/routeParams";
-import { Suspense } from "react";
 
 export async function generateMetadata({
   params,
@@ -29,7 +29,11 @@ export default async function RoutePage(routeParams: RouteParamsType) {
 
   return (
     <Container size="xl">
-      <PerPage total={info.pages} />
+      <Group justify="flex-end" gap="xs" mb="md">
+        <FilterForm />
+        <PerPage total={info.pages} />
+      </Group>
+
       {route === "character" && (
         <SimpleGrid cols={5} spacing="lg" verticalSpacing="lg">
           {results.map((result) => (

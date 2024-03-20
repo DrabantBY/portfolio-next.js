@@ -10,7 +10,7 @@ export function handleRouteParams({
     urlSearchParams.append("page", "1");
   }
 
-  const baseUrl = process.env.BASE_URL;
+  const baseUrl = process.env.baseUrl;
 
   return `${baseUrl}${params.route}?${urlSearchParams.toString()}`;
 }

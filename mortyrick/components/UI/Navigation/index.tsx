@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 
 import { Group } from "@mantine/core";
 
-import RouterLink from "../RouterLink";
+import RouterLink from "../route-link";
 
 const routes = [
   { pathname: "/character", query: { page: 1 } },
@@ -16,7 +16,7 @@ export default function Navigation() {
   const pathname = usePathname();
 
   return (
-    <Group justify="center" gap="xs">
+    <Group justify="center" gap="xs" visibleFrom="sm">
       {routes.map((route, index) => (
         <RouterLink
           key={index}

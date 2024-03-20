@@ -12,6 +12,7 @@ export default function BtnTheme() {
       size="xl"
       radius="xl"
       onClick={toggleColorScheme}
+      aria-label="Toggle color theme"
     >
       <IconSun className="light" />
       <IconMoonStars className="dark" />

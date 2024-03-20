@@ -1,9 +1,10 @@
 import { ColorSchemeScript, MantineProvider, Stack } from "@mantine/core";
 
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import Header from "@/components/header";
+import Footer from "@/components/footer";
 
 import font from "./fonts";
+import theme from "./theme";
 
 import "./global.css";
 
@@ -20,7 +21,7 @@ export default function RootLayout({
         <ColorSchemeScript defaultColorScheme="dark" />
       </head>
       <body className={font.className}>
-        <MantineProvider defaultColorScheme="dark">
+        <MantineProvider defaultColorScheme="dark" theme={theme}>
           <Stack mih="100vh">
             <Header />
             <main>{children}</main>

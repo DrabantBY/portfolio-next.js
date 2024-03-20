@@ -9,6 +9,7 @@ export default function BtnBurger() {
   return (
     <>
       <Drawer
+        hiddenFrom="sm"
         opened={opened}
         onClose={close}
         title="Navigation/Filter"
@@ -16,10 +17,18 @@ export default function BtnBurger() {
         size="sm"
         offset={5}
         radius="xs"
+        closeButtonProps={{ "aria-label": "Close sidebar" }}
       >
         {/* Drawer content */}
       </Drawer>
-      <Burger opened={false} onClick={open} size="md" color="blue.3" />
+      <Burger
+        opened={false}
+        onClick={open}
+        size="md"
+        color="blue.3"
+        hiddenFrom="sm"
+        aria-label="Open sidebar"
+      />
     </>
   );
 }
