@@ -1,20 +1,20 @@
 import { Metadata } from "next";
+import { Suspense } from "react";
 
-import { Container, Group, SimpleGrid } from "@mantine/core";
+import { Container, Group } from "@mantine/core";
 
-import CharacterCard from "@/components/cards/character-card";
-import EpisodeCard from "@/components/cards/episode-card";
-import LocationCard from "@/components/cards/location-card";
-import FilterForm from "@/components/filter-form";
-import PerPage from "@/components/ui/per-page";
+import FilterForm from "@/ui/filter-form";
+import PerPage from "@/ui/per-page";
+import CardList from "@/ui/cards/card-list";
+import Spinner from "@/ui/spinner";
 
-import getDataByRoute from "@/fetch/getDataByRoute";
+import fetchDataPage from "@/lib/fetch/fetch-data-page";
 
-import type { RouteParamsType } from "@/types/routeParams";
+import type { UrlParamsType } from "@/types/urlParams";
 
 export async function generateMetadata({
   params,
-}: RouteParamsType): Promise<Metadata> {
+}: UrlParamsType): Promise<Metadata> {
   const { route } = params;
 
   return {
@@ -23,9 +23,9 @@ export async function generateMetadata({
   };
 }
 
-export default async function RoutePage(routeParams: RouteParamsType) {
-  const { route } = routeParams.params;
-  const { results, info } = await getDataByRoute(routeParams);
+export default async function Page(routeParams: UrlParamsType) {
+  const { info } = await fetchDataPage(routeParams);
+  const suspenseKey = new URLSearchParams(routeParams.searchParams);
 
   return (
     <Container size="xl">
@@ -33,16 +33,9 @@ export default async function RoutePage(routeParams: RouteParamsType) {
         <FilterForm />
         <PerPage total={info.pages} />
       </Group>
-
-      {route === "character" && (
-        <SimpleGrid cols={5} spacing="lg" verticalSpacing="lg">
-          {results.map((result) => (
-            <CharacterCard key={result.id} {...result} />
-          ))}
-        </SimpleGrid>
-      )}
-      {route === "episode" && <EpisodeCard results={results} />}
-      {route === "location" && <LocationCard results={results} />}
+      <Suspense key={suspenseKey.toString()} fallback={<Spinner />}>
+        <CardList routeParams={routeParams} />
+      </Suspense>
     </Container>
   );
 }

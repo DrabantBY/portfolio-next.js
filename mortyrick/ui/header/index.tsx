@@ -1,9 +1,9 @@
 import { Container, Group } from "@mantine/core";
 
-import Navigation from "../ui/navigation";
-import LogoLink from "../ui/logo-link";
-import BtnTheme from "../ui/btn-theme";
-import BtnBurger from "../ui/btn-burger";
+import Navigation from "../navigation";
+import LogoLink from "../logo-link";
+import BtnTheme from "../btn-theme";
+import BtnBurger from "../btn-burger";
 
 export default function Header() {
   return (

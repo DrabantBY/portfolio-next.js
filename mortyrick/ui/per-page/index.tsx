@@ -1,6 +1,6 @@
 "use client";
 
-import usePerPageNavigation from "@/hooks/usePerPageNavigation";
+import usePerPage from "@/lib/hooks/use-per-page";
 
 import { Pagination } from "@mantine/core";
 
@@ -9,7 +9,7 @@ type PerPagePropsType = {
 };
 
 export default function PerPage({ total }: PerPagePropsType) {
-  const { page, navigatePerPage } = usePerPageNavigation();
+  const { page, navigatePerPage } = usePerPage();
 
   return (
     <Pagination

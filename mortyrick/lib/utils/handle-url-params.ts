@@ -1,9 +1,9 @@
-import type { RouteParamsType } from "@/types/routeParams";
+import type { UrlParamsType } from "@/types/urlParams";
 
-export function handleRouteParams({
+export function handleUrlParams({
   params,
   searchParams,
-}: RouteParamsType): string {
+}: UrlParamsType): string {
   const urlSearchParams = new URLSearchParams(searchParams);
 
   if (!urlSearchParams.has("page")) {

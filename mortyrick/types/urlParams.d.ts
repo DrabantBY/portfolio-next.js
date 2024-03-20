@@ -8,9 +8,10 @@ export type PageSearchParamsType =
   | LocationSearchParamsType;
 
 export type RouteParamsType = {
-  params: {
-    route: "character" | "episode" | "location";
-  };
+  route: "character" | "episode" | "location";
+};
 
+export type UrlParamsType = {
+  params: RouteParamsType;
   searchParams: PageSearchParamsType;
 };
