@@ -1,17 +1,16 @@
-import { usePathname, useSearchParams, useRouter } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 
 export default function usePerPage() {
   const pathName = usePathname();
   const searchParams = useSearchParams();
-  const router = useRouter();
-  const page = Number(searchParams.get("page"));
+  const currentPage = Number(searchParams.get("page"));
 
-  const navigatePerPage = (value: number) => {
+  const setHref = (value: number) => {
     const newSearchParams = new URLSearchParams(searchParams.toString());
     newSearchParams.set("page", `${value}`);
-    const route = `${pathName}?${newSearchParams.toString()}`;
-    router.replace(route);
+    const href = `${pathName}?${newSearchParams.toString()}`;
+    return href;
   };
 
-  return { page, navigatePerPage };
+  return { currentPage, setHref };
 }

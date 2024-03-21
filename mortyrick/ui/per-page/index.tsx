@@ -3,22 +3,32 @@
 import usePerPage from "@/lib/hooks/use-per-page";
 
 import { Pagination } from "@mantine/core";
+import Link from "next/link";
 
 type PerPagePropsType = {
   total: number;
 };
 
 export default function PerPage({ total }: PerPagePropsType) {
-  const { page, navigatePerPage } = usePerPage();
+  const { currentPage, setHref } = usePerPage();
+
+  const getNextLink = (page: number) => {
+    const href = setHref(page);
+    return {
+      component: (props: Record<string, any>) => (
+        <Link href={href} {...props} />
+      ),
+    };
+  };
 
   return (
     <Pagination
-      defaultValue={page}
+      defaultValue={currentPage}
       total={total}
-      onChange={navigatePerPage}
       size="sm"
       radius="sm"
       withControls={false}
-    ></Pagination>
+      getItemProps={getNextLink}
+    />
   );
 }

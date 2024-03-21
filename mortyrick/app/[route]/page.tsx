@@ -5,7 +5,7 @@ import { Container, Group } from "@mantine/core";
 
 import FilterForm from "@/ui/filter-form";
 import PerPage from "@/ui/per-page";
-import CardList from "@/ui/cards/card-list";
+import Cards from "@/ui/cards";
 import Spinner from "@/ui/spinner";
 
 import fetchDataPage from "@/lib/fetch/fetch-data-page";
@@ -34,7 +34,7 @@ export default async function Page(routeParams: UrlParamsType) {
         <PerPage total={info.pages} />
       </Group>
       <Suspense key={suspenseKey.toString()} fallback={<Spinner />}>
-        <CardList routeParams={routeParams} />
+        <Cards routeParams={routeParams} />
       </Suspense>
     </Container>
   );

@@ -1,14 +1,14 @@
 import { SimpleGrid } from "@mantine/core";
 
-import CharacterCard from "../character-card";
-import EpisodeCard from "../episode-card";
-import LocationCard from "../location-card";
+import CharacterCard from "./character-card";
+import EpisodeCard from "./episode-card";
+import LocationCard from "./location-card";
 
 import getDataByRoute from "@/lib/fetch/fetch-data-page";
 
 import type { UrlParamsType } from "@/types/urlParams";
 
-export default async function CardList({
+export default async function Cards({
   routeParams,
 }: {
   routeParams: UrlParamsType;
