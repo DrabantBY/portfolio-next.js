@@ -24,7 +24,8 @@ export async function generateMetadata({
 }
 
 export default async function Page(routeParams: UrlParamsType) {
-  const { info } = await fetchDataPage(routeParams);
+  const { info, results } = await fetchDataPage(routeParams);
+  const { route } = routeParams.params;
   const suspenseKey = new URLSearchParams(routeParams.searchParams);
 
   return (
@@ -34,7 +35,7 @@ export default async function Page(routeParams: UrlParamsType) {
         <PerPage total={info.pages} />
       </Group>
       <Suspense key={suspenseKey.toString()} fallback={<Spinner />}>
-        <Cards routeParams={routeParams} />
+        <Cards results={results} route={route} />
       </Suspense>
     </Container>
   );

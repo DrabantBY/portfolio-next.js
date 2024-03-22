@@ -3,19 +3,14 @@ import { SimpleGrid } from "@mantine/core";
 import CharacterCard from "./character-card";
 import EpisodeCard from "./episode-card";
 import LocationCard from "./location-card";
+import { RouteParamsType } from "@/types/urlParams";
+import { ResultsDataType } from "@/types/data";
 
-import getDataByRoute from "@/lib/fetch/fetch-data-page";
+type CardsPropsType = RouteParamsType & {
+  results: ResultsDataType;
+};
 
-import type { UrlParamsType } from "@/types/urlParams";
-
-export default async function Cards({
-  routeParams,
-}: {
-  routeParams: UrlParamsType;
-}) {
-  const { route } = routeParams.params;
-  const { results } = await getDataByRoute(routeParams);
-
+export default async function Cards({ route, results }: CardsPropsType) {
   switch (route) {
     case "character":
       return (
@@ -29,5 +24,7 @@ export default async function Cards({
       return <EpisodeCard results={results} />;
     case "location":
       return <LocationCard results={results} />;
+    default:
+      return null;
   }
 }
