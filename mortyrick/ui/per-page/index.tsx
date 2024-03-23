@@ -24,6 +24,7 @@ export default function PerPage({ total }: { total: number }) {
       size="sm"
       radius="sm"
       withControls={false}
+      color="indigo.5"
       // getItemProps={getNextLink}
     />
   );

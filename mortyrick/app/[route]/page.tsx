@@ -30,7 +30,7 @@ export default async function Page(routeParams: UrlParamsType) {
 
   return (
     <Container size="xl">
-      <Group justify="flex-end" gap="xs" mb="md">
+      <Group justify="space-between" gap="xs" mb="md">
         <FilterForm />
         <PerPage total={info.pages} />
       </Group>

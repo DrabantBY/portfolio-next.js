@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { TextInput, CloseButton } from "@mantine/core";
 
+import classes from "./styles.module.css";
+
 export default function SearchField({
   query,
 }: {
@@ -10,23 +12,30 @@ export default function SearchField({
   const searchParams = useSearchParams();
   const initialValue = searchParams.get(query) ?? "";
   const [value, setValue] = useState<string>(initialValue);
+  const [focus, setFocus] = useState<boolean>(false);
+  const float = Boolean(value.trim()) || focus || undefined;
 
   return (
     <TextInput
+      classNames={classes}
+      label={query}
+      placeholder="Input here..."
+      data-float={float}
+      labelProps={{ "data-float": float }}
       value={value}
       onChange={(event) => setValue(event.target.value)}
-      placeholder="type here ..."
-      leftSectionWidth={70}
+      onFocus={() => setFocus(true)}
+      onBlur={() => setFocus(false)}
       rightSection={
         <CloseButton
           onClick={() => setValue("")}
           display={value ? "flex" : "none"}
-          size="md"
+          size="lg"
           aria-label="Clear input"
           c="red.7"
         />
       }
-      w={250}
+      w={180}
       variant="filled"
       size="md"
     ></TextInput>

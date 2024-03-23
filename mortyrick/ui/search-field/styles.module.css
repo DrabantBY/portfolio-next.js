@@ -1,0 +1,37 @@
+.root {
+  position: relative;
+}
+
+.label {
+  position: absolute;
+  top: var(--mantine-spacing-xs);
+  left: var(--mantine-spacing-md);
+  z-index: 1;
+  font-size: var(--mantine-font-size-xl);
+  pointer-events: none;
+  transition: transform 0.1s linear, color 0.1s linear, font-size 0.1s linear;
+
+  &[data-float] {
+    font-size: var(--mantine-font-size-md);
+    color: var(--mantine-color-indigo-4);
+    transform: translate(
+      calc(var(--mantine-spacing-xs) * -1),
+      calc(var(--mantine-spacing-sm) * -1)
+    );
+  }
+}
+
+.input {
+  height: rem(52px);
+  padding-top: var(--mantine-spacing-sm);
+  padding-left: var(--mantine-spacing-sm);
+  &::placeholder {
+    color: transparent;
+  }
+
+  &[data-float] {
+    &::placeholder {
+      color: initial;
+    }
+  }
+}
