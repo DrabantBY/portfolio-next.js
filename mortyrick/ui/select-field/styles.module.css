@@ -23,11 +23,10 @@
 
 .input {
   height: rem(48px);
-  padding-top: var(--mantine-spacing-sm);
+  padding-top: var(--mantine-spacing-md);
   padding-left: var(--mantine-spacing-sm);
   font-size: var(--mantine-font-size-md);
   &::placeholder {
-    font-size: var(--mantine-font-size-md);
     color: transparent;
   }
 
@@ -36,4 +35,19 @@
       color: initial;
     }
   }
+
+  &[data-expanded] {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+
+.dropdown {
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  border-top: 0;
+}
+
+.groupLabel {
+  font-size: var(--mantine-font-size-md);
 }
