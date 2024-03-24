@@ -1,5 +1,6 @@
-import { useSearchParams } from "next/navigation";
 import { useState, useEffect, useRef, useCallback } from "react";
+
+import { useSearchParams } from "next/navigation";
 
 export default function useSelect(label: "status" | "gender") {
   const searchParams = useSearchParams();

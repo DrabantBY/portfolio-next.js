@@ -1,12 +1,8 @@
-"use client";
+import { Select } from "@mantine/core";
+
+import BtnInput from "../btn-input";
 
 import useSelect from "@/lib/hooks/use-select";
-
-import { Select } from "@mantine/core";
-import { CloseButton } from "@mantine/core";
-import { ActionIcon } from "@mantine/core";
-
-import { IconSelect } from "@tabler/icons-react";
 
 import classes from "./styles.module.css";
 
@@ -32,18 +28,7 @@ export default function SelectField({
       w={130}
       rightSectionPointerEvents={value ? "auto" : "none"}
       rightSection={
-        value ? (
-          <CloseButton
-            onClick={resetValue}
-            size="md"
-            aria-label="Clear select"
-            c="red.7"
-          />
-        ) : (
-          <ActionIcon variant="subtle" size="sm">
-            <IconSelect />
-          </ActionIcon>
-        )
+        <BtnInput type="select" isEmpty={Boolean(value)} resetFn={resetValue} />
       }
       comboboxProps={{
         shadow: "md",

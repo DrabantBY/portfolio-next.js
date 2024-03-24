@@ -1,9 +1,8 @@
+import { TextInput } from "@mantine/core";
+
+import BtnInput from "../btn-input";
+
 import useSearch from "@/lib/hooks/use-search";
-
-import { TextInput, CloseButton } from "@mantine/core";
-import { ActionIcon } from "@mantine/core";
-
-import { IconPencilPlus } from "@tabler/icons-react";
 
 import classes from "./styles.module.css";
 
@@ -29,18 +28,7 @@ export default function SearchField({
       onBlur={handleBlur}
       rightSectionPointerEvents={value ? "auto" : "none"}
       rightSection={
-        value ? (
-          <CloseButton
-            onClick={resetValue}
-            size="md"
-            aria-label="Clear input"
-            c="red.7"
-          />
-        ) : (
-          <ActionIcon size="sm" variant="subtle">
-            <IconPencilPlus />
-          </ActionIcon>
-        )
+        <BtnInput type="search" isEmpty={Boolean(value)} resetFn={resetValue} />
       }
       w={130}
       variant="filled"

@@ -1,4 +1,5 @@
 import { useState, useCallback, ChangeEvent } from "react";
+
 import { useSearchParams } from "next/navigation";
 
 export default function useSearch(

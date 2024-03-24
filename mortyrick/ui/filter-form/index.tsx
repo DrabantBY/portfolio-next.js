@@ -2,9 +2,9 @@
 
 import { usePathname } from "next/navigation";
 
-import SearchField from "../search-field";
-import SelectField from "../select-field";
-import BtnSubmit from "../btn-submit";
+import SearchField from "./search-field";
+import SelectField from "./select-field";
+import BtnSubmit from "./btn-submit";
 
 import filterDataAction from "@/lib/actions/filter-action";
 
