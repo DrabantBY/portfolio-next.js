@@ -9,6 +9,12 @@ export default function useSelect(label: "status" | "gender") {
   const ref = useRef<HTMLInputElement | null>(null);
   const float = Boolean(value) || undefined;
 
+  useEffect(() => {
+    if (ref.current) {
+      ref.current.blur();
+    }
+  }, [value]);
+
   const handleChange = useCallback((option: string | null) => {
     setValue(option);
   }, []);
@@ -16,12 +22,6 @@ export default function useSelect(label: "status" | "gender") {
   const resetValue = useCallback(() => {
     setValue(null);
   }, []);
-
-  useEffect(() => {
-    if (ref.current) {
-      ref.current.blur();
-    }
-  }, [value]);
 
   return { value, float, ref, handleChange, resetValue };
 }

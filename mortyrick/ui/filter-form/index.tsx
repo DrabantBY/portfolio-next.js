@@ -13,7 +13,10 @@ import classes from "./styles.module.css";
 export default function FilterForm() {
   const pathname = usePathname();
   return (
-    <form action={filterDataAction} className={classes.form}>
+    <form
+      action={filterDataAction.bind(null, pathname)}
+      className={classes.form}
+    >
       <SearchField label="name" />
       {pathname !== "/episode" && <SearchField label="type" />}
       {pathname === "/character" && (

@@ -1,5 +1,16 @@
 "use server";
 
-export default async function filterDataAction(formData: FormData) {
-  console.log(Object.fromEntries(formData));
+import { redirect } from "next/navigation";
+
+import handleFormData from "../utils/handle-form-data";
+
+export default async function filterDataAction(
+  pathname: string,
+  formData: FormData
+) {
+  const urlSearchParams = handleFormData(formData);
+
+  const route = `${pathname}?${urlSearchParams}`;
+
+  redirect(route);
 }
