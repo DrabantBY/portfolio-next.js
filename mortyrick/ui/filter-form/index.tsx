@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 
 import SearchField from "./search-field";
 import SelectField from "./select-field";
-import BtnSubmit from "./btn-submit";
+import BtnSearch from "./btn-search";
 
 import filterDataAction from "@/lib/actions/filter-action";
 
@@ -31,7 +31,7 @@ export default function FilterForm() {
       )}
       {pathname === "/episode" && <SearchField label="episode" />}
       {pathname === "/location" && <SearchField label="dimension" />}
-      <BtnSubmit />
+      <BtnSearch />
     </form>
   );
 }

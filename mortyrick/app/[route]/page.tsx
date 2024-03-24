@@ -25,7 +25,6 @@ export async function generateMetadata({
 
 export default async function Page(routeParams: UrlParamsType) {
   const { info, results } = await fetchDataPage(routeParams);
-  console.log(info, results);
   const { route } = routeParams.params;
   const suspenseKey = new URLSearchParams(routeParams.searchParams);
 
