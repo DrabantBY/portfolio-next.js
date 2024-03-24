@@ -1,6 +1,4 @@
-import { useState } from "react";
-
-import { useSearchParams } from "next/navigation";
+import useSearch from "@/lib/hooks/use-search";
 
 import { TextInput, CloseButton } from "@mantine/core";
 import { ActionIcon } from "@mantine/core";
@@ -14,28 +12,26 @@ export default function SearchField({
 }: {
   label: "name" | "type" | "species" | "episode" | "dimension";
 }) {
-  const searchParams = useSearchParams();
-  const initialValue = searchParams.get(label) ?? "";
-  const [value, setValue] = useState<string>(initialValue);
-  const [focus, setFocus] = useState<boolean>(false);
-  const float = Boolean(value.trim()) || focus || undefined;
+  const { value, float, handleChange, handleFocus, handleBlur, resetValue } =
+    useSearch(label);
 
   return (
     <TextInput
       classNames={classes}
+      name={label}
       label={label}
-      placeholder=". . ."
+      placeholder=" . . ."
+      value={value}
       data-float={float}
       labelProps={{ "data-float": float }}
-      value={value}
-      onChange={(event) => setValue(event.target.value)}
-      onFocus={() => setFocus(true)}
-      onBlur={() => setFocus(false)}
+      onChange={handleChange}
+      onFocus={handleFocus}
+      onBlur={handleBlur}
       rightSectionPointerEvents={value ? "auto" : "none"}
       rightSection={
         value ? (
           <CloseButton
-            onClick={() => setValue("")}
+            onClick={resetValue}
             size="md"
             aria-label="Clear input"
             c="red.7"

@@ -4,13 +4,16 @@ import { usePathname } from "next/navigation";
 
 import SearchField from "../search-field";
 import SelectField from "../select-field";
+import BtnSubmit from "../btn-submit";
+
+import filterDataAction from "@/lib/actions/filter-action";
 
 import classes from "./styles.module.css";
 
 export default function FilterForm() {
   const pathname = usePathname();
   return (
-    <form className={classes.form}>
+    <form action={filterDataAction} className={classes.form}>
       <SearchField label="name" />
       {pathname !== "/episode" && <SearchField label="type" />}
       {pathname === "/character" && (
@@ -25,6 +28,7 @@ export default function FilterForm() {
       )}
       {pathname === "/episode" && <SearchField label="episode" />}
       {pathname === "/location" && <SearchField label="dimension" />}
+      <BtnSubmit />
     </form>
   );
 }

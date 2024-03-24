@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import { useSearchParams } from "next/navigation";
+import useSelect from "@/lib/hooks/use-select";
 
 import { Select } from "@mantine/core";
 import { CloseButton } from "@mantine/core";
@@ -18,25 +17,24 @@ export default function SelectField({
   label: "status" | "gender";
   options: string[];
 }) {
-  const searchParams = useSearchParams();
-  const initialValue = searchParams.get(label);
-  const [value, setValue] = useState<string | null>(initialValue);
-  const float = Boolean(value) || undefined;
+  const { value, float, ref, handleChange, resetValue } = useSelect(label);
 
   return (
     <Select
       classNames={classes}
+      name={label}
       label={label}
       data={[{ group: "select", items: options }]}
       value={value}
-      onChange={setValue}
+      onChange={handleChange}
       variant="filled"
+      ref={ref}
       w={130}
       rightSectionPointerEvents={value ? "auto" : "none"}
       rightSection={
         value ? (
           <CloseButton
-            onClick={() => setValue(null)}
+            onClick={resetValue}
             size="md"
             aria-label="Clear select"
             c="red.7"
@@ -48,6 +46,7 @@ export default function SelectField({
         )
       }
       comboboxProps={{
+        shadow: "md",
         size: "sm",
         offset: 0,
         dropdownPadding: 0,
