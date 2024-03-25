@@ -1,22 +1,13 @@
 import type { PageSearchParamsType } from "@/types/urlParams";
 
-const SEARCH_PARAMS = [
-  "name",
-  "type",
-  "status",
-  "species",
-  "gender",
-  "episode",
-  "dimension",
-];
-
 export default function handleFormData(formData: FormData) {
+  const formDataIterator = formData.entries();
+
   const searchParams: PageSearchParamsType = { page: "1" };
 
-  for (const param of SEARCH_PARAMS) {
-    const formDataValue = formData.get(param) as string | null;
-    if (formDataValue) {
-      searchParams[param as keyof PageSearchParamsType] = formDataValue;
+  for (const [key, value] of formDataIterator) {
+    if (!key.startsWith("$ACTION_") && value && !(value instanceof File)) {
+      searchParams[key as keyof PageSearchParamsType] = value;
     }
   }
 

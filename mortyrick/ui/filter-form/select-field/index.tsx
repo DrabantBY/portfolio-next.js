@@ -1,3 +1,5 @@
+import { useFormStatus } from "react-dom";
+
 import { Select } from "@mantine/core";
 
 import BtnInput from "../btn-input";
@@ -14,6 +16,7 @@ export default function SelectField({
   options: string[];
 }) {
   const { value, float, ref, handleChange, resetValue } = useSelect(label);
+  const { pending } = useFormStatus();
 
   return (
     <Select
@@ -22,13 +25,19 @@ export default function SelectField({
       label={label}
       data={[{ group: "select", items: options }]}
       value={value}
+      disabled={pending}
       onChange={handleChange}
       variant="filled"
       ref={ref}
       w={130}
       rightSectionPointerEvents={value ? "auto" : "none"}
       rightSection={
-        <BtnInput type="select" isEmpty={Boolean(value)} resetFn={resetValue} />
+        <BtnInput
+          type="select"
+          isEmpty={Boolean(value)}
+          resetFn={resetValue}
+          disabled={pending}
+        />
       }
       comboboxProps={{
         shadow: "md",

@@ -9,7 +9,7 @@ export default function useSearch(
   const initialValue = searchParams.get(label) ?? "";
   const [value, setValue] = useState<string>(initialValue);
   const [focus, setFocus] = useState<boolean>(false);
-  const float = Boolean(value.trim()) || focus || undefined;
+  const float = Boolean(value) || focus || undefined;
 
   const handleChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     setValue(event?.target.value);

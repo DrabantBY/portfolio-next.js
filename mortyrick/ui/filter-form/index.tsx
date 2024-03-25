@@ -12,6 +12,7 @@ import classes from "./styles.module.css";
 
 export default function FilterForm() {
   const pathname = usePathname();
+
   return (
     <form
       action={filterDataAction.bind(null, pathname)}

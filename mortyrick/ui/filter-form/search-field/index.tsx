@@ -1,3 +1,5 @@
+import { useFormStatus } from "react-dom";
+
 import { TextInput } from "@mantine/core";
 
 import BtnInput from "../btn-input";
@@ -14,6 +16,8 @@ export default function SearchField({
   const { value, float, handleChange, handleFocus, handleBlur, resetValue } =
     useSearch(label);
 
+  const { pending } = useFormStatus();
+
   return (
     <TextInput
       classNames={classes}
@@ -21,6 +25,7 @@ export default function SearchField({
       label={label}
       placeholder=" . . ."
       value={value}
+      disabled={pending}
       data-float={float}
       labelProps={{ "data-float": float }}
       onChange={handleChange}
@@ -28,7 +33,12 @@ export default function SearchField({
       onBlur={handleBlur}
       rightSectionPointerEvents={value ? "auto" : "none"}
       rightSection={
-        <BtnInput type="search" isEmpty={Boolean(value)} resetFn={resetValue} />
+        <BtnInput
+          type="search"
+          isEmpty={Boolean(value)}
+          resetFn={resetValue}
+          disabled={pending}
+        />
       }
       w={130}
       variant="filled"

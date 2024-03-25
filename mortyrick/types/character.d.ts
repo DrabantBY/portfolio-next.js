@@ -4,9 +4,9 @@ export type CharacterSearchParamsType = {
   page?: string;
   name?: string;
   type?: string;
-  status?: "alive" | "dead" | "unknown";
+  status?: string;
   species?: string;
-  gender?: "female" | "male" | "genderless" | "unknown";
+  gender?: string;
 };
 
 export type CharacterType = {
