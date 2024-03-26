@@ -1,42 +1,68 @@
+import { useEffect, useRef } from "react";
+
 import { useFormStatus } from "react-dom";
 
 import { Select } from "@mantine/core";
 
 import BtnInput from "../btn-input";
 
-import useSelect from "@/lib/hooks/use-select";
+import type { UseFormReturnType } from "@mantine/form";
+import type { FormValues } from "..";
 
 import classes from "./styles.module.css";
 
+export type SelectFieldLabelType = "status" | "gender";
+
+type SelectFieldPropsType = {
+  label: SelectFieldLabelType;
+  form: UseFormReturnType<FormValues>;
+  options: string[];
+};
+
 export default function SelectField({
   label,
+  form,
   options,
-}: {
-  label: "status" | "gender";
-  options: string[];
-}) {
-  const { value, float, ref, handleChange, resetValue } = useSelect(label);
+}: SelectFieldPropsType) {
   const { pending } = useFormStatus();
+
+  const refSelect = useRef<HTMLInputElement | null>(null);
+
+  const float = form.isDirty(label) || undefined;
+
+  const pointerEvents = form.values[label] ? "auto" : "none";
+
+  const resetFn = () => {
+    form.setFieldValue(label, null);
+    form.resetTouched();
+  };
+
+  useEffect(() => {
+    if (refSelect.current) {
+      refSelect.current.blur();
+    }
+  }, [form.values[label]]);
 
   return (
     <Select
+      ref={refSelect}
+      {...form.getInputProps(label)}
       classNames={classes}
       name={label}
       label={label}
       data={[{ group: "select", items: options }]}
-      value={value}
       disabled={pending}
-      onChange={handleChange}
-      variant="filled"
-      ref={ref}
+      data-float={float}
+      labelProps={{ "data-float": float }}
       w={130}
-      rightSectionPointerEvents={value ? "auto" : "none"}
+      variant="filled"
+      rightSectionPointerEvents={pointerEvents}
       rightSection={
         <BtnInput
           type="select"
-          isEmpty={Boolean(value)}
-          resetFn={resetValue}
+          isEmpty={form.isDirty(label)}
           disabled={pending}
+          resetFn={resetFn}
         />
       }
       comboboxProps={{
@@ -45,8 +71,6 @@ export default function SelectField({
         offset: 0,
         dropdownPadding: 0,
       }}
-      data-float={float}
-      labelProps={{ "data-float": float }}
     />
   );
 }

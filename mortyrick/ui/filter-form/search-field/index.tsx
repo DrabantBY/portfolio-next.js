@@ -1,48 +1,64 @@
 import { useFormStatus } from "react-dom";
 
 import { TextInput } from "@mantine/core";
+import { UseFormReturnType } from "@mantine/form";
 
 import BtnInput from "../btn-input";
 
-import useSearch from "@/lib/hooks/use-search";
+import type { FormValues } from "..";
 
 import classes from "./styles.module.css";
 
-export default function SearchField({
-  label,
-}: {
-  label: "name" | "type" | "species" | "episode" | "dimension";
-}) {
-  const { value, float, handleChange, handleFocus, handleBlur, resetValue } =
-    useSearch(label);
+export type SearchFieldLabelType =
+  | "name"
+  | "type"
+  | "species"
+  | "episode"
+  | "dimension";
 
+type SearchFieldPropsType = {
+  label: SearchFieldLabelType;
+  form: UseFormReturnType<FormValues>;
+};
+
+export default function SearchField({ label, form }: SearchFieldPropsType) {
   const { pending } = useFormStatus();
+
+  const float = form.isDirty(label) || form.isTouched(label) || undefined;
+
+  const pointerEvents = form.values[label] ? "auto" : "none";
+
+  const blurFn = () => {
+    form.resetTouched();
+  };
+
+  const resetFn = () => {
+    form.setFieldValue(label, "");
+    form.resetTouched();
+  };
 
   return (
     <TextInput
+      {...form.getInputProps(label)}
       classNames={classes}
       name={label}
       label={label}
       placeholder=" . . ."
-      value={value}
       disabled={pending}
       data-float={float}
       labelProps={{ "data-float": float }}
-      onChange={handleChange}
-      onFocus={handleFocus}
-      onBlur={handleBlur}
-      rightSectionPointerEvents={value ? "auto" : "none"}
+      w={130}
+      variant="filled"
+      onBlur={blurFn}
+      rightSectionPointerEvents={pointerEvents}
       rightSection={
         <BtnInput
           type="search"
-          isEmpty={Boolean(value)}
-          resetFn={resetValue}
+          isEmpty={form.isDirty(label)}
           disabled={pending}
+          resetFn={resetFn}
         />
       }
-      w={130}
-      variant="filled"
-      size="md"
     ></TextInput>
   );
 }
