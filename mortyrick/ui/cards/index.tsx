@@ -4,10 +4,11 @@ import CharacterCard from "./character-card";
 import EpisodeCard from "./episode-card";
 import LocationCard from "./location-card";
 
-import { RouteParamsType } from "@/types/urlParams";
+import { RouteParamsType } from "@/types/url-params";
 import { ResultsDataType } from "@/types/data";
 
-type CardsPropsType = RouteParamsType & {
+type CardsPropsType = {
+  route: RouteParamsType;
   results: ResultsDataType;
 };
 

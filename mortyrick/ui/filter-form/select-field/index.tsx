@@ -3,14 +3,14 @@ import { useFormStatus } from "react-dom";
 import { Select } from "@mantine/core";
 import BtnInput from "../btn-input";
 import type { UseFormReturnType } from "@mantine/form";
-import type { FormValues } from "..";
 import classes from "./styles.module.css";
+import { FilterFormValues } from "@/types/filter-form.";
 
 export type SelectFieldLabelType = "status" | "gender";
 
 type SelectFieldPropsType = {
   label: SelectFieldLabelType;
-  form: UseFormReturnType<FormValues>;
+  form: UseFormReturnType<FilterFormValues>;
   options: string[];
 };
 
@@ -23,7 +23,7 @@ export default function SelectField({
 
   const refSelect = useRef<HTMLInputElement | null>(null);
 
-  const float = form.isDirty(label) || undefined;
+  const float = Boolean(form.values[label]) || form.isDirty(label) || undefined;
 
   const pointerEvents = form.values[label] ? "auto" : "none";
 

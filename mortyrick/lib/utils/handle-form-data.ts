@@ -1,4 +1,4 @@
-import type { PageSearchParamsType } from "@/types/urlParams";
+import type { PageSearchParamsType } from "@/types/url-params";
 
 export default function handleFormData(formData: FormData) {
   const formDataIterator = formData.entries();

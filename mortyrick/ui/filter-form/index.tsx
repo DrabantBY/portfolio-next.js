@@ -1,58 +1,31 @@
 "use client";
 
-import { usePathname } from "next/navigation";
-
+import { memo } from "react";
 import { ActionIcon } from "@mantine/core";
-import { useForm } from "@mantine/form";
-
 import SearchField from "./search-field";
 import SelectField from "./select-field";
 import BtnFilter from "./btn-filter";
 import BtnReset from "./btn-reset";
-
+import useFilterForm from "@/lib/hooks/use-filter-form";
 import filterDataAction from "@/lib/actions/filter-action";
-
+import type { PageSearchParamsType, RouteParamsType } from "@/types/url-params";
 import classes from "./styles.module.css";
 
-export type FormValues = {
-  name: string;
-  type: string;
-  species: string;
-  episode: string;
-  dimension: string;
-  status: string | null;
-  gender: string | null;
+type FilterFormPropsType = {
+  route: RouteParamsType;
+  searchParams: PageSearchParamsType;
 };
 
-export default function FilterForm() {
-  const path = usePathname();
-
-  const form = useForm<FormValues>({
-    name: "filter-form",
-    initialValues: {
-      name: "",
-      type: "",
-      species: "",
-      episode: "",
-      dimension: "",
-      status: null,
-      gender: null,
-    },
-  });
-
-  const btnDisabled = Object.values(form.values).every((value) => !value);
+const FilterForm = memo(({ route, searchParams }: FilterFormPropsType) => {
+  const { form, formValuesIsInitial } = useFilterForm(searchParams);
 
   return (
-    <form
-      onSubmit={() => console.log(form.values)}
-      action={filterDataAction.bind(null, path)}
-      className={classes.form}
-    >
+    <form action={filterDataAction.bind(null, route)} className={classes.form}>
       <SearchField label="name" form={form} />
-      {path !== "/episode" && <SearchField label="type" form={form} />}
-      {path === "/episode" && <SearchField label="episode" form={form} />}
-      {path === "/location" && <SearchField label="dimension" form={form} />}
-      {path === "/character" && (
+      {route !== "episode" && <SearchField label="type" form={form} />}
+      {route === "episode" && <SearchField label="episode" form={form} />}
+      {route === "location" && <SearchField label="dimension" form={form} />}
+      {route === "character" && (
         <>
           <SearchField label="species" form={form} />
           <SelectField
@@ -69,9 +42,11 @@ export default function FilterForm() {
       )}
 
       <ActionIcon.Group orientation="vertical">
-        <BtnFilter disabled={btnDisabled} />
-        <BtnReset disabled={btnDisabled} resetForm={form.reset} />
+        <BtnFilter disabled={formValuesIsInitial} />
+        <BtnReset disabled={formValuesIsInitial} resetForm={form.reset} />
       </ActionIcon.Group>
     </form>
   );
-}
+});
+
+export default FilterForm;

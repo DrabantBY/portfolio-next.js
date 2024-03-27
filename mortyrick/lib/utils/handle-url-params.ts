@@ -1,4 +1,4 @@
-import type { UrlParamsType } from "@/types/urlParams";
+import type { UrlParamsType } from "@/types/url-params";
 
 export function handleUrlParams({
   params,

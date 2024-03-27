@@ -13,11 +13,9 @@ export type PageSearchParamsType = {
   dimension?: string;
 };
 
-export type RouteParamsType = {
-  route: "character" | "episode" | "location";
-};
+export type RouteParamsType = "character" | "episode" | "location";
 
 export type UrlParamsType = {
-  params: RouteParamsType;
+  params: { route: RouteParamsType };
   searchParams: PageSearchParamsType;
 };

@@ -10,7 +10,7 @@ import Spinner from "@/ui/spinner";
 
 import fetchDataPage from "@/lib/fetch/fetch-data-page";
 
-import type { UrlParamsType } from "@/types/urlParams";
+import type { UrlParamsType } from "@/types/url-params";
 
 export async function generateMetadata({
   params,
@@ -31,7 +31,7 @@ export default async function Page(routeParams: UrlParamsType) {
   return (
     <Container size="xl">
       <Group justify="space-between" gap="xs" mb="md">
-        <FilterForm />
+        <FilterForm route={route} searchParams={routeParams.searchParams} />
         <PerPage total={info.pages} />
       </Group>
       <Suspense key={suspenseKey.toString()} fallback={<Spinner />}>

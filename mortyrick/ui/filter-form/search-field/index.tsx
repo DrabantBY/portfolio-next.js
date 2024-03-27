@@ -3,8 +3,8 @@ import { useFormStatus } from "react-dom";
 import { TextInput } from "@mantine/core";
 import { UseFormReturnType } from "@mantine/form";
 import BtnInput from "../btn-input";
-import type { FormValues } from "..";
 import classes from "./styles.module.css";
+import { FilterFormValues } from "@/types/filter-form.";
 
 export type SearchFieldLabelType =
   | "name"
@@ -15,7 +15,7 @@ export type SearchFieldLabelType =
 
 type SearchFieldPropsType = {
   label: SearchFieldLabelType;
-  form: UseFormReturnType<FormValues>;
+  form: UseFormReturnType<FilterFormValues>;
 };
 
 export default function SearchField({ label, form }: SearchFieldPropsType) {
