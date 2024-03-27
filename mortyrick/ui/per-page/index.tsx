@@ -18,7 +18,7 @@ export default function PerPage({ total }: { total: number }) {
 
   return (
     <Pagination
-      defaultValue={page}
+      value={page}
       onChange={setPage}
       total={total}
       size="sm"

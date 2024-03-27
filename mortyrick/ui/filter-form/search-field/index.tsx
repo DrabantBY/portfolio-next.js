@@ -1,12 +1,9 @@
+import { useCallback } from "react";
 import { useFormStatus } from "react-dom";
-
 import { TextInput } from "@mantine/core";
 import { UseFormReturnType } from "@mantine/form";
-
 import BtnInput from "../btn-input";
-
 import type { FormValues } from "..";
-
 import classes from "./styles.module.css";
 
 export type SearchFieldLabelType =
@@ -28,14 +25,14 @@ export default function SearchField({ label, form }: SearchFieldPropsType) {
 
   const pointerEvents = form.values[label] ? "auto" : "none";
 
-  const blurFn = () => {
+  const blurInput = useCallback(() => {
     form.resetTouched();
-  };
+  }, []);
 
-  const resetFn = () => {
+  const resetInput = useCallback(() => {
     form.setFieldValue(label, "");
     form.resetTouched();
-  };
+  }, []);
 
   return (
     <TextInput
@@ -49,14 +46,14 @@ export default function SearchField({ label, form }: SearchFieldPropsType) {
       labelProps={{ "data-float": float }}
       w={130}
       variant="filled"
-      onBlur={blurFn}
+      onBlur={blurInput}
       rightSectionPointerEvents={pointerEvents}
       rightSection={
         <BtnInput
           type="search"
           isEmpty={form.isDirty(label)}
           disabled={pending}
-          resetFn={resetFn}
+          resetInput={resetInput}
         />
       }
     ></TextInput>

@@ -1,14 +1,9 @@
-import { useEffect, useRef } from "react";
-
+import { useEffect, useRef, useCallback } from "react";
 import { useFormStatus } from "react-dom";
-
 import { Select } from "@mantine/core";
-
 import BtnInput from "../btn-input";
-
 import type { UseFormReturnType } from "@mantine/form";
 import type { FormValues } from "..";
-
 import classes from "./styles.module.css";
 
 export type SelectFieldLabelType = "status" | "gender";
@@ -32,10 +27,10 @@ export default function SelectField({
 
   const pointerEvents = form.values[label] ? "auto" : "none";
 
-  const resetFn = () => {
+  const resetInput = useCallback(() => {
     form.setFieldValue(label, null);
     form.resetTouched();
-  };
+  }, []);
 
   useEffect(() => {
     if (refSelect.current) {
@@ -62,7 +57,7 @@ export default function SelectField({
           type="select"
           isEmpty={form.isDirty(label)}
           disabled={pending}
-          resetFn={resetFn}
+          resetInput={resetInput}
         />
       }
       comboboxProps={{

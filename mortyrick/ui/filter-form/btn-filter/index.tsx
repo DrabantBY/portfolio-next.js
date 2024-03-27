@@ -1,10 +1,9 @@
+import { memo } from "react";
 import { useFormStatus } from "react-dom";
-
 import { ActionIcon } from "@mantine/core";
-
 import { IconFilterSearch } from "@tabler/icons-react";
 
-export default function BtnFilter({ disabled }: { disabled: boolean }) {
+const BtnFilter = memo(({ disabled }: { disabled: boolean }) => {
   const { pending } = useFormStatus();
 
   return (
@@ -21,4 +20,6 @@ export default function BtnFilter({ disabled }: { disabled: boolean }) {
       <IconFilterSearch />
     </ActionIcon>
   );
-}
+});
+
+export default BtnFilter;

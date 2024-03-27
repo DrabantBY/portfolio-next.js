@@ -1,10 +1,8 @@
+import { memo } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
 import { useFormStatus } from "react-dom";
-
 import { ActionIcon } from "@mantine/core";
-
 import { IconFilterX } from "@tabler/icons-react";
 
 type BtnResetProps = {
@@ -12,7 +10,7 @@ type BtnResetProps = {
   resetForm: () => void;
 };
 
-export default function BtnReset({ disabled, resetForm }: BtnResetProps) {
+const BtnReset = memo(({ disabled, resetForm }: BtnResetProps) => {
   const { pending } = useFormStatus();
   const pathname = usePathname();
   const route = { pathname, query: { page: 1 } };
@@ -31,4 +29,6 @@ export default function BtnReset({ disabled, resetForm }: BtnResetProps) {
       <IconFilterX />
     </ActionIcon>
   );
-}
+});
+
+export default BtnReset;
