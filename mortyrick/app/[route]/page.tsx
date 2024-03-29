@@ -23,16 +23,21 @@ export async function generateMetadata({
   };
 }
 
-export default async function Page(routeParams: UrlParamsType) {
+export default async function Page(routeParams: any) {
   const { info, results } = await fetchDataPage(routeParams);
   const { route } = routeParams.params;
+  console.log(info);
   const suspenseKey = new URLSearchParams(routeParams.searchParams);
 
   return (
     <Container size="xl">
       <Group justify="space-between" gap="xs" mb="md">
         <FilterForm route={route} searchParams={routeParams.searchParams} />
-        <PerPage total={info.pages} />
+        <PerPage
+          route={route}
+          searchParams={routeParams.searchParams}
+          total={info.pages}
+        />
       </Group>
       <Suspense key={suspenseKey.toString()} fallback={<Spinner />}>
         <Cards results={results} route={route} />

@@ -1,11 +1,18 @@
 "use client";
 
-import usePerPage from "@/lib/hooks/use-per-page";
-
+import { memo } from "react";
 import { Pagination } from "@mantine/core";
+import usePerPage from "@/lib/hooks/use-per-page";
+import type { PageSearchParamsType, RouteParamsType } from "@/types/url-params";
 
-export default function PerPage({ total }: { total: number }) {
-  const { page, setPage } = usePerPage();
+type PerPagePropsType = {
+  route: RouteParamsType;
+  searchParams: PageSearchParamsType;
+  total: number;
+};
+
+const PerPage = memo(({ route, searchParams, total }: PerPagePropsType) => {
+  const { page, setPage } = usePerPage(route, searchParams);
 
   // const getNextLink = (page: number) => {
   //   const href = setHref(page);
@@ -28,4 +35,6 @@ export default function PerPage({ total }: { total: number }) {
       // getItemProps={getNextLink}
     />
   );
-}
+});
+
+export default PerPage;

@@ -13,8 +13,6 @@ const initialValues: FilterFormValues = {
 };
 
 const useFilterForm = (searchParams: PageSearchParamsType) => {
-  delete searchParams.page;
-
   const form = useForm<FilterFormValues>({
     name: "filter-form",
     initialValues: {
