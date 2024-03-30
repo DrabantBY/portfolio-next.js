@@ -20,7 +20,7 @@ const BtnReset = memo(({ disabled, onReset }: BtnResetPropsType) => {
       component={Link}
       href={route}
       onClick={onReset}
-      size="sm"
+      size="md"
       variant="subtle"
       aria-label="Form reset"
       disabled={disabled || pending}

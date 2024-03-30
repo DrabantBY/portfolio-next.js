@@ -1,7 +1,7 @@
 "use client";
 
 import { memo } from "react";
-import { ActionIcon } from "@mantine/core";
+import { ActionIcon, Divider } from "@mantine/core";
 import SearchField from "./search-field";
 import SelectField from "./select-field";
 import BtnFilter from "./btn-filter";
@@ -21,23 +21,43 @@ const FilterForm = memo(({ route, searchParams }: FilterFormPropsType) => {
 
   return (
     <form action={filterDataAction.bind(null, route)} className={classes.form}>
+      <Divider orientation="vertical" size="md" />
       <SearchField label="name" form={form} />
-      {route !== "episode" && <SearchField label="type" form={form} />}
-      {route === "episode" && <SearchField label="episode" form={form} />}
-      {route === "location" && <SearchField label="dimension" form={form} />}
+      <Divider orientation="vertical" size="md" />
+      {route !== "episode" && (
+        <>
+          <SearchField label="type" form={form} />
+          <Divider orientation="vertical" size="md" />
+        </>
+      )}
+      {route === "episode" && (
+        <>
+          <SearchField label="episode" form={form} />
+          <Divider orientation="vertical" size="md" />
+        </>
+      )}
+      {route === "location" && (
+        <>
+          <SearchField label="dimension" form={form} />
+          <Divider orientation="vertical" size="md" />
+        </>
+      )}
       {route === "character" && (
         <>
           <SearchField label="species" form={form} />
+          <Divider orientation="vertical" size="md" />
           <SelectField
             label="status"
             form={form}
             options={["alive", "dead", "unknown"]}
           />
+          <Divider orientation="vertical" size="md" />
           <SelectField
             label="gender"
             form={form}
             options={["female", "male", "genderless", "unknown"]}
           />
+          <Divider orientation="vertical" size="md" />
         </>
       )}
 

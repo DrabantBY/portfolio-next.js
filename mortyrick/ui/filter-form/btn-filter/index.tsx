@@ -10,7 +10,7 @@ const BtnFilter = memo(({ disabled }: { disabled: boolean }) => {
     <ActionIcon
       component="button"
       type="submit"
-      size="sm"
+      size="md"
       variant="subtle"
       aria-label="Form submit"
       loading={pending}

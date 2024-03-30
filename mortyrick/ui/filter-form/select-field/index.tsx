@@ -45,7 +45,7 @@ export default function SelectField({
       data-float={isFloat}
       labelProps={{ "data-float": isFloat }}
       w={130}
-      variant="filled"
+      variant="unstyled"
       rightSectionPointerEvents={isEmpty ? "auto" : "none"}
       rightSection={
         <BtnInput
