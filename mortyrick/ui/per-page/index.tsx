@@ -1,7 +1,7 @@
 "use client";
 
 import { memo } from "react";
-import { Pagination } from "@mantine/core";
+import { Pagination, Group, Progress, Divider, Stack } from "@mantine/core";
 import usePerPage from "@/lib/hooks/use-per-page";
 import type { PageSearchParamsType, RouteParamsType } from "@/types/url-params";
 
@@ -9,32 +9,56 @@ type PerPagePropsType = {
   route: RouteParamsType;
   searchParams: PageSearchParamsType;
   total: number;
+  count: number;
+  amount: number;
 };
 
-const PerPage = memo(({ route, searchParams, total }: PerPagePropsType) => {
-  const { page, setPage } = usePerPage(route, searchParams);
+const pageSize = 20;
 
-  // const getNextLink = (page: number) => {
-  //   const href = setHref(page);
-  //   return {
-  //     component: (props: Record<string, any>) => (
-  //       <Link href={href} {...props} />
-  //     ),
-  //   };
-  // };
+const PerPage = memo(
+  ({ route, searchParams, total, count, amount }: PerPagePropsType) => {
+    const { page, setPage } = usePerPage(route, searchParams);
+    const currentCount = (page - 1) * pageSize + amount;
+    const progressValue = (currentCount / count) * 100;
 
-  return (
-    <Pagination
-      value={page}
-      onChange={setPage}
-      total={total}
-      size="sm"
-      radius="sm"
-      withControls={false}
-      color="indigo.5"
-      // getItemProps={getNextLink}
-    />
-  );
-});
+    // const getNextLink = (page: number) => {
+    //   const href = setHref(page);
+    //   return {
+    //     component: (props: Record<string, any>) => (
+    //       <Link href={href} {...props} />
+    //     ),
+    //   };
+    // };
+
+    return (
+      <Stack align="center" gap="xs">
+        <Group>
+          {currentCount}
+          <Divider orientation="vertical" size="md" />
+          <Progress
+            radius="xs"
+            size="xl"
+            w={100}
+            value={progressValue}
+            color="yellow.7"
+          />
+          <Divider orientation="vertical" size="md" />
+          {count}
+        </Group>
+
+        <Pagination
+          value={page}
+          onChange={setPage}
+          total={total}
+          size="sm"
+          radius="sm"
+          withControls={false}
+          color="indigo.5"
+          // getItemProps={getNextLink}
+        />
+      </Stack>
+    );
+  }
+);
 
 export default PerPage;

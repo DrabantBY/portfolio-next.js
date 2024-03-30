@@ -36,6 +36,8 @@ export default async function Page(routeParams: any) {
           route={route}
           searchParams={routeParams.searchParams}
           total={info.pages}
+          count={info.count}
+          amount={results.length}
         />
       </Group>
       <Suspense key={suspenseKey.toString()} fallback={<Spinner />}>
