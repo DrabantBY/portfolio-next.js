@@ -1,7 +1,7 @@
 import { Loader } from "@mantine/core";
 import classes from "./styles.module.css";
 
-export default function Spinner() {
+const Spinner = () => {
   return (
     <Loader
       className={classes.position}
@@ -11,4 +11,6 @@ export default function Spinner() {
       left="50%"
     />
   );
-}
+};
+
+export default Spinner;

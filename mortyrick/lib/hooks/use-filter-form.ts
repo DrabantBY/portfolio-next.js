@@ -1,8 +1,8 @@
 import { useForm } from "@mantine/form";
 import type { PageSearchParamsType } from "@/types/url-params";
-import type { FilterFormValues } from "@/types/filter-form.";
+import type { FilterFormValuesType } from "@/types/filter-form.";
 
-const initialValues: FilterFormValues = {
+const initialValues: FilterFormValuesType = {
   name: "",
   type: "",
   species: "",
@@ -13,11 +13,16 @@ const initialValues: FilterFormValues = {
 };
 
 const useFilterForm = (searchParams: PageSearchParamsType) => {
-  const form = useForm<FilterFormValues>({
+  const initialSearchParams = { ...searchParams };
+  if ("page" in initialSearchParams) {
+    delete initialSearchParams.page;
+  }
+
+  const form = useForm<FilterFormValuesType>({
     name: "filter-form",
     initialValues: {
       ...initialValues,
-      ...searchParams,
+      ...initialSearchParams,
     },
   });
 

@@ -1,16 +1,15 @@
-import { useEffect, useRef, useCallback } from "react";
-import { useFormStatus } from "react-dom";
-import { Select } from "@mantine/core";
+import useSelectField from "@/lib/hooks/use-select-field";
+import { ComboboxItem, Select } from "@mantine/core";
 import BtnInput from "../btn-input";
-import type { UseFormReturnType } from "@mantine/form";
+import type {
+  FilterFormType,
+  FilterFormSelectFieldLabelType,
+} from "@/types/filter-form.";
 import classes from "./styles.module.css";
-import { FilterFormValues } from "@/types/filter-form.";
-
-export type SelectFieldLabelType = "status" | "gender";
 
 type SelectFieldPropsType = {
-  label: SelectFieldLabelType;
-  form: UseFormReturnType<FilterFormValues>;
+  label: FilterFormSelectFieldLabelType;
+  form: FilterFormType;
   options: string[];
 };
 
@@ -19,45 +18,41 @@ export default function SelectField({
   form,
   options,
 }: SelectFieldPropsType) {
-  const { pending } = useFormStatus();
-
-  const refSelect = useRef<HTMLInputElement | null>(null);
-
-  const float = Boolean(form.values[label]) || form.isDirty(label) || undefined;
-
-  const pointerEvents = form.values[label] ? "auto" : "none";
-
-  const resetInput = useCallback(() => {
-    form.setFieldValue(label, null);
-    form.resetTouched();
-  }, []);
-
-  useEffect(() => {
-    if (refSelect.current) {
-      refSelect.current.blur();
-    }
-  }, [form.values[label]]);
+  const {
+    refSelect,
+    pending,
+    value,
+    isFloat,
+    isEmpty,
+    handleOnFocus,
+    handleOnBlur,
+    handleOnReset,
+    handleOnChange,
+  } = useSelectField(label, form);
 
   return (
     <Select
       ref={refSelect}
-      {...form.getInputProps(label)}
       classNames={classes}
       name={label}
       label={label}
       data={[{ group: "select", items: options }]}
       disabled={pending}
-      data-float={float}
-      labelProps={{ "data-float": float }}
+      value={value}
+      onChange={handleOnChange}
+      onFocus={handleOnFocus}
+      onBlur={handleOnBlur}
+      data-float={isFloat}
+      labelProps={{ "data-float": isFloat }}
       w={130}
       variant="filled"
-      rightSectionPointerEvents={pointerEvents}
+      rightSectionPointerEvents={isEmpty ? "auto" : "none"}
       rightSection={
         <BtnInput
           type="select"
-          isEmpty={form.isDirty(label)}
+          isEmpty={isEmpty}
           disabled={pending}
-          resetInput={resetInput}
+          onReset={handleOnReset}
         />
       }
       comboboxProps={{

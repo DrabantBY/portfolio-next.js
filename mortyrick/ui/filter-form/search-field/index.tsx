@@ -1,59 +1,52 @@
-import { useCallback } from "react";
-import { useFormStatus } from "react-dom";
 import { TextInput } from "@mantine/core";
-import { UseFormReturnType } from "@mantine/form";
 import BtnInput from "../btn-input";
+import useSearchField from "@/lib/hooks/use-search-field";
+import type {
+  FilterFormSearchFieldLabelType,
+  FilterFormType,
+} from "@/types/filter-form.";
 import classes from "./styles.module.css";
-import { FilterFormValues } from "@/types/filter-form.";
-
-export type SearchFieldLabelType =
-  | "name"
-  | "type"
-  | "species"
-  | "episode"
-  | "dimension";
+import { ChangeEventHandler } from "react";
 
 type SearchFieldPropsType = {
-  label: SearchFieldLabelType;
-  form: UseFormReturnType<FilterFormValues>;
+  label: FilterFormSearchFieldLabelType;
+  form: FilterFormType;
 };
 
 export default function SearchField({ label, form }: SearchFieldPropsType) {
-  const { pending } = useFormStatus();
-
-  const float = form.isDirty(label) || form.isTouched(label) || undefined;
-
-  const pointerEvents = form.values[label] ? "auto" : "none";
-
-  const blurInput = useCallback(() => {
-    form.resetTouched();
-  }, []);
-
-  const resetInput = useCallback(() => {
-    form.setFieldValue(label, "");
-    form.resetTouched();
-  }, []);
+  const {
+    pending,
+    value,
+    isFloat,
+    isEmpty,
+    handleOnFocus,
+    handleOnBlur,
+    handleOnReset,
+    handleOnChange,
+  } = useSearchField(label, form);
 
   return (
     <TextInput
-      {...form.getInputProps(label)}
       classNames={classes}
       name={label}
       label={label}
       placeholder=" . . ."
       disabled={pending}
-      data-float={float}
-      labelProps={{ "data-float": float }}
+      value={value}
+      onChange={handleOnChange as ChangeEventHandler<HTMLInputElement>}
+      onFocus={handleOnFocus}
+      onBlur={handleOnBlur}
+      data-float={isFloat}
+      labelProps={{ "data-float": isFloat }}
       w={130}
       variant="filled"
-      onBlur={blurInput}
-      rightSectionPointerEvents={pointerEvents}
+      rightSectionPointerEvents={isEmpty ? "auto" : "none"}
       rightSection={
         <BtnInput
           type="search"
-          isEmpty={form.isDirty(label)}
+          isEmpty={isEmpty}
           disabled={pending}
-          resetInput={resetInput}
+          onReset={handleOnReset}
         />
       }
     ></TextInput>

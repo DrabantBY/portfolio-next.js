@@ -43,7 +43,7 @@ const FilterForm = memo(({ route, searchParams }: FilterFormPropsType) => {
 
       <ActionIcon.Group orientation="vertical">
         <BtnFilter disabled={formValuesIsInitial} />
-        <BtnReset disabled={formValuesIsInitial} resetForm={form.reset} />
+        <BtnReset disabled={formValuesIsInitial} onReset={form.reset} />
       </ActionIcon.Group>
     </form>
   );

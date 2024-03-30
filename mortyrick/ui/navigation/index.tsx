@@ -1,9 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-
 import { Group } from "@mantine/core";
-
 import RouterLink from "../route-link";
 
 const routes = [
@@ -12,7 +10,7 @@ const routes = [
   { pathname: "/location", query: { page: 1 } },
 ];
 
-export default function Navigation() {
+const Navigation = () => {
   const pathname = usePathname();
 
   return (
@@ -27,4 +25,6 @@ export default function Navigation() {
       ))}
     </Group>
   );
-}
+};
+
+export default Navigation;

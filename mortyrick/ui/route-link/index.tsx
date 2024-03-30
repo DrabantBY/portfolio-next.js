@@ -1,3 +1,4 @@
+import { memo } from "react";
 import Link from "next/link";
 import { NavLink } from "@mantine/core";
 
@@ -7,7 +8,7 @@ type RouteLinkPropsType = {
   active: boolean;
 };
 
-export default function RouteLink(props: RouteLinkPropsType) {
+const RouteLink = memo((props: RouteLinkPropsType) => {
   return (
     <NavLink
       component={Link}
@@ -18,4 +19,6 @@ export default function RouteLink(props: RouteLinkPropsType) {
       tt="uppercase"
     />
   );
-}
+});
+
+export default RouteLink;
