@@ -11,9 +11,11 @@ export default function Header() {
       <Container size="xl" py="xs">
         <Group justify="space-between">
           <LogoLink />
-          <Navigation />
-          <BtnTheme />
-          <BtnBurger />
+          <Navigation place="header" />
+          <Group>
+            <BtnTheme />
+            <BtnBurger />
+          </Group>
         </Group>
       </Container>
     </header>

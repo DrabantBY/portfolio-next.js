@@ -2,6 +2,7 @@
 
 import { Burger, Drawer } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
+import Navigation from "../navigation";
 
 export default function BtnBurger() {
   const [opened, { open, close }] = useDisclosure(false);
@@ -14,18 +15,18 @@ export default function BtnBurger() {
         onClose={close}
         title="Navigation/Filter"
         position="right"
-        size="sm"
+        size="xs"
         offset={5}
         radius="xs"
         closeButtonProps={{ "aria-label": "Close sidebar" }}
       >
-        {/* Drawer content */}
+        <Navigation place="sidebar" />
       </Drawer>
       <Burger
         opened={false}
         onClick={open}
         size="md"
-        color="blue.3"
+        color="indigo.4"
         hiddenFrom="sm"
         aria-label="Open sidebar"
       />
