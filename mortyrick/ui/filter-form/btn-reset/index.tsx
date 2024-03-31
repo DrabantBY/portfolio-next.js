@@ -21,10 +21,11 @@ const BtnReset = memo(({ disabled, onReset }: BtnResetPropsType) => {
       href={route}
       onClick={onReset}
       size="md"
+      radius={0}
       variant="subtle"
       aria-label="Form reset"
       disabled={disabled || pending}
-      c={disabled || pending ? "dark.3" : "yellow.7"}
+      c={disabled || pending ? undefined : "yellow.7"}
     >
       <IconFilterX />
     </ActionIcon>

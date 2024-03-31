@@ -1,4 +1,4 @@
-import { TextInput } from "@mantine/core";
+import { Box, Divider, TextInput } from "@mantine/core";
 import BtnInput from "../btn-input";
 import useSearchField from "@/lib/hooks/use-search-field";
 import type {
@@ -26,29 +26,32 @@ export default function SearchField({ label, form }: SearchFieldPropsType) {
   } = useSearchField(label, form);
 
   return (
-    <TextInput
-      classNames={classes}
-      name={label}
-      label={label}
-      placeholder=" . . ."
-      disabled={pending}
-      value={value}
-      onChange={handleOnChange as ChangeEventHandler<HTMLInputElement>}
-      onFocus={handleOnFocus}
-      onBlur={handleOnBlur}
-      data-float={isFloat}
-      labelProps={{ "data-float": isFloat }}
-      w={130}
-      variant="unstyled"
-      rightSectionPointerEvents={isEmpty ? "auto" : "none"}
-      rightSection={
-        <BtnInput
-          type="search"
-          isEmpty={isEmpty}
-          disabled={pending}
-          onReset={handleOnReset}
-        />
-      }
-    ></TextInput>
+    <Box mr="xs">
+      <TextInput
+        classNames={classes}
+        name={label}
+        label={label}
+        placeholder=" . . ."
+        disabled={pending}
+        value={value}
+        onChange={handleOnChange as ChangeEventHandler<HTMLInputElement>}
+        onFocus={handleOnFocus}
+        onBlur={handleOnBlur}
+        data-float={isFloat}
+        labelProps={{ "data-float": isFloat }}
+        w={130}
+        variant="unstyled"
+        rightSectionPointerEvents={isEmpty ? "auto" : "none"}
+        rightSection={
+          <BtnInput
+            type="search"
+            isEmpty={isEmpty}
+            disabled={pending}
+            onReset={handleOnReset}
+          />
+        }
+      />
+      <Divider size="sm" color={isFloat ? "indigo.4" : undefined} />
+    </Box>
   );
 }

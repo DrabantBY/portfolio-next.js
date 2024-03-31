@@ -1,5 +1,5 @@
 import useSelectField from "@/lib/hooks/use-select-field";
-import { ComboboxItem, Select } from "@mantine/core";
+import { Box, ComboboxItem, Divider, Select } from "@mantine/core";
 import BtnInput from "../btn-input";
 import type {
   FilterFormType,
@@ -31,36 +31,39 @@ export default function SelectField({
   } = useSelectField(label, form);
 
   return (
-    <Select
-      ref={refSelect}
-      classNames={classes}
-      name={label}
-      label={label}
-      data={[{ group: "select", items: options }]}
-      disabled={pending}
-      value={value}
-      onChange={handleOnChange}
-      onFocus={handleOnFocus}
-      onBlur={handleOnBlur}
-      data-float={isFloat}
-      labelProps={{ "data-float": isFloat }}
-      w={130}
-      variant="unstyled"
-      rightSectionPointerEvents={isEmpty ? "auto" : "none"}
-      rightSection={
-        <BtnInput
-          type="select"
-          isEmpty={isEmpty}
-          disabled={pending}
-          onReset={handleOnReset}
-        />
-      }
-      comboboxProps={{
-        shadow: "md",
-        size: "sm",
-        offset: 0,
-        dropdownPadding: 0,
-      }}
-    />
+    <Box mr="xs">
+      <Select
+        ref={refSelect}
+        classNames={classes}
+        name={label}
+        label={label}
+        data={[{ group: "select", items: options }]}
+        disabled={pending}
+        value={value}
+        onChange={handleOnChange}
+        onFocus={handleOnFocus}
+        onBlur={handleOnBlur}
+        data-float={isFloat}
+        labelProps={{ "data-float": isFloat }}
+        w={130}
+        variant="unstyled"
+        rightSectionPointerEvents={isEmpty ? "auto" : "none"}
+        rightSection={
+          <BtnInput
+            type="select"
+            isEmpty={isEmpty}
+            disabled={pending}
+            onReset={handleOnReset}
+          />
+        }
+        comboboxProps={{
+          shadow: "md",
+          size: "sm",
+          offset: 0,
+          dropdownPadding: 0,
+        }}
+      />
+      <Divider size="sm" color={isFloat ? "indigo.4" : undefined} />
+    </Box>
   );
 }

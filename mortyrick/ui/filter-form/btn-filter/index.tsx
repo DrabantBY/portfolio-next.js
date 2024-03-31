@@ -11,11 +11,12 @@ const BtnFilter = memo(({ disabled }: { disabled: boolean }) => {
       component="button"
       type="submit"
       size="md"
+      radius={0}
       variant="subtle"
       aria-label="Form submit"
       loading={pending}
       disabled={disabled || pending}
-      c={disabled ? "dark.3" : "indigo.7"}
+      c={disabled ? undefined : "indigo.7"}
     >
       <IconFilterSearch />
     </ActionIcon>

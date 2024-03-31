@@ -21,50 +21,31 @@ const FilterForm = memo(({ route, searchParams }: FilterFormPropsType) => {
 
   return (
     <form action={filterDataAction.bind(null, route)} className={classes.form}>
-      <Divider orientation="vertical" size="md" />
       <SearchField label="name" form={form} />
-      <Divider orientation="vertical" size="md" />
-      {route !== "episode" && (
-        <>
-          <SearchField label="type" form={form} />
-          <Divider orientation="vertical" size="md" />
-        </>
-      )}
-      {route === "episode" && (
-        <>
-          <SearchField label="episode" form={form} />
-          <Divider orientation="vertical" size="md" />
-        </>
-      )}
-      {route === "location" && (
-        <>
-          <SearchField label="dimension" form={form} />
-          <Divider orientation="vertical" size="md" />
-        </>
-      )}
+      {route !== "episode" && <SearchField label="type" form={form} />}
+      {route === "episode" && <SearchField label="episode" form={form} />}
+      {route === "location" && <SearchField label="dimension" form={form} />}
       {route === "character" && (
         <>
           <SearchField label="species" form={form} />
-          <Divider orientation="vertical" size="md" />
           <SelectField
             label="status"
             form={form}
             options={["alive", "dead", "unknown"]}
           />
-          <Divider orientation="vertical" size="md" />
           <SelectField
             label="gender"
             form={form}
             options={["female", "male", "genderless", "unknown"]}
           />
-          <Divider orientation="vertical" size="md" />
         </>
       )}
-
+      <Divider orientation="vertical" size="sm" />
       <ActionIcon.Group orientation="vertical">
         <BtnFilter disabled={formValuesIsInitial} />
         <BtnReset disabled={formValuesIsInitial} onReset={form.reset} />
       </ActionIcon.Group>
+      <Divider orientation="vertical" size="sm" />
     </form>
   );
 });
