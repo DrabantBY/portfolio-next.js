@@ -1,52 +1,60 @@
 "use client";
 
 import { memo } from "react";
-import { ActionIcon, Divider } from "@mantine/core";
+import { ActionIcon, Box, Button, Flex } from "@mantine/core";
 import SearchField from "./search-field";
 import SelectField from "./select-field";
 import BtnFilter from "./btn-filter";
 import BtnReset from "./btn-reset";
-import useFilterForm from "@/lib/hooks/use-filter-form";
+
 import filterDataAction from "@/lib/actions/filter-action";
-import type { PageSearchParamsType, RouteParamsType } from "@/types/url-params";
-import classes from "./styles.module.css";
+import { RouteParamsType } from "@/types/url-params";
 
 type FilterFormPropsType = {
+  isSidebar: boolean;
   route: RouteParamsType;
-  searchParams: PageSearchParamsType;
 };
 
-const FilterForm = memo(({ route, searchParams }: FilterFormPropsType) => {
-  const { form, formValuesIsInitial } = useFilterForm(searchParams);
-
+const FilterForm = memo(({ route, isSidebar }: FilterFormPropsType) => {
   return (
-    <form action={filterDataAction.bind(null, route)} className={classes.form}>
-      <SearchField label="name" form={form} />
-      {route !== "episode" && <SearchField label="type" form={form} />}
-      {route === "episode" && <SearchField label="episode" form={form} />}
-      {route === "location" && <SearchField label="dimension" form={form} />}
-      {route === "character" && (
-        <>
-          <SearchField label="species" form={form} />
-          <SelectField
-            label="status"
-            form={form}
-            options={["alive", "dead", "unknown"]}
-          />
-          <SelectField
-            label="gender"
-            form={form}
-            options={["female", "male", "genderless", "unknown"]}
-          />
-        </>
-      )}
-      <Divider orientation="vertical" size="sm" />
-      <ActionIcon.Group orientation="vertical">
-        <BtnFilter disabled={formValuesIsInitial} />
-        <BtnReset disabled={formValuesIsInitial} onReset={form.reset} />
-      </ActionIcon.Group>
-      <Divider orientation="vertical" size="sm" />
-    </form>
+    <Box visibleFrom={isSidebar ? undefined : "md"}>
+      <form action={filterDataAction.bind(null, route)}>
+        <Flex
+          direction={{ base: "column", md: "row" }}
+          gap={{ base: "xs", md: 0 }}
+        >
+          <SearchField label="name" />
+          {route !== "episode" ? <SearchField label="type" /> : null}
+          {route === "episode" ? <SearchField label="episode" /> : null}
+          {route === "location" ? <SearchField label="dimension" /> : null}
+          {route === "character" ? <SearchField label="species" /> : null}
+          {route === "character" ? (
+            <SelectField
+              label="status"
+              options={["alive", "dead", "unknown"]}
+            />
+          ) : null}
+          {route === "character" ? (
+            <SelectField
+              label="gender"
+              options={["female", "male", "genderless", "unknown"]}
+            />
+          ) : null}
+
+          {isSidebar ? (
+            <Button.Group orientation="horizontal">
+              <BtnFilter isSidebar={isSidebar} />
+              <BtnReset isSidebar={isSidebar} onReset={() => {}} />
+            </Button.Group>
+          ) : (
+            <ActionIcon.Group orientation="vertical">
+              <BtnFilter isSidebar={isSidebar} />
+              <BtnReset isSidebar={isSidebar} onReset={() => {}} />
+            </ActionIcon.Group>
+          )}
+        </Flex>
+      </form>
+    </Box>
   );
 });
 

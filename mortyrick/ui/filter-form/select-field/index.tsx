@@ -1,61 +1,38 @@
-import useSelectField from "@/lib/hooks/use-select-field";
-import { Box, ComboboxItem, Divider, Select } from "@mantine/core";
+import { memo } from "react";
+import { Box, Divider, Select } from "@mantine/core";
 import BtnInput from "../btn-input";
-import type {
-  FilterFormType,
-  FilterFormSelectFieldLabelType,
-} from "@/types/filter-form.";
 import classes from "./styles.module.css";
+import { useFormStatus } from "react-dom";
+import type { FilterFormSelectFieldLabelType } from "@/types/filter-form.";
 
 type SelectFieldPropsType = {
   label: FilterFormSelectFieldLabelType;
-  form: FilterFormType;
   options: string[];
 };
 
-export default function SelectField({
-  label,
-  form,
-  options,
-}: SelectFieldPropsType) {
-  const {
-    refSelect,
-    pending,
-    value,
-    isFloat,
-    isEmpty,
-    handleOnFocus,
-    handleOnBlur,
-    handleOnReset,
-    handleOnChange,
-  } = useSelectField(label, form);
-
+const SelectField = memo(({ label, options }: SelectFieldPropsType) => {
+  const { pending } = useFormStatus();
   return (
     <Box mr="xs">
       <Select
-        ref={refSelect}
         classNames={classes}
         name={label}
         label={label}
         data={[{ group: "select", items: options }]}
         disabled={pending}
-        value={value}
-        onChange={handleOnChange}
-        onFocus={handleOnFocus}
-        onBlur={handleOnBlur}
-        data-float={isFloat}
-        labelProps={{ "data-float": isFloat }}
-        w={130}
+        // data-float={isFloat}
+        // labelProps={{ "data-float": isFloat }}
+        w={{ base: "100%", md: 130 }}
         variant="unstyled"
-        rightSectionPointerEvents={isEmpty ? "auto" : "none"}
-        rightSection={
-          <BtnInput
-            type="select"
-            isEmpty={isEmpty}
-            disabled={pending}
-            onReset={handleOnReset}
-          />
-        }
+        // rightSectionPointerEvents={isEmpty ? "auto" : "none"}
+        // rightSection={
+        //   <BtnInput
+        //     type="select"
+        //     isEmpty={isEmpty}
+        //     disabled={pending}
+        //     onReset={handleOnReset}
+        //   />
+        // }
         comboboxProps={{
           shadow: "md",
           size: "sm",
@@ -63,7 +40,9 @@ export default function SelectField({
           dropdownPadding: 0,
         }}
       />
-      <Divider size="sm" color={isFloat ? "indigo.4" : undefined} />
+      {/* <Divider size="sm" color={isFloat ? "indigo.4" : undefined} /> */}
     </Box>
   );
-}
+});
+
+export default SelectField;

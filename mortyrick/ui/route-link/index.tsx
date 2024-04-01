@@ -19,8 +19,8 @@ const RouteLink = memo(
         label={label}
         active={active}
         variant="light"
-        w={{ base: "100%", sm: 120 }}
-        ta={{ base: "left", sm: "center" }}
+        w={{ base: "100%", md: 120 }}
+        ta={{ base: "left", md: "center" }}
         tt="uppercase"
         rightSection={isRightSection ? <IconExternalLink /> : null}
       />

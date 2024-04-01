@@ -1,29 +1,22 @@
+import { memo, useCallback, useState } from "react";
 import { Box, Divider, TextInput } from "@mantine/core";
 import BtnInput from "../btn-input";
-import useSearchField from "@/lib/hooks/use-search-field";
-import type {
-  FilterFormSearchFieldLabelType,
-  FilterFormType,
-} from "@/types/filter-form.";
+import type { FilterFormSearchFieldLabelType } from "@/types/filter-form.";
+import { useFormStatus } from "react-dom";
 import classes from "./styles.module.css";
-import { ChangeEventHandler } from "react";
 
 type SearchFieldPropsType = {
   label: FilterFormSearchFieldLabelType;
-  form: FilterFormType;
 };
 
-export default function SearchField({ label, form }: SearchFieldPropsType) {
-  const {
-    pending,
-    value,
-    isFloat,
-    isEmpty,
-    handleOnFocus,
-    handleOnBlur,
-    handleOnReset,
-    handleOnChange,
-  } = useSearchField(label, form);
+const SearchField = memo(({ label }: SearchFieldPropsType) => {
+  const { pending } = useFormStatus();
+  const [value, setValue] = useState("");
+  const [focus, setFocus] = useState(false);
+  const isEmpty = Boolean(value);
+  const isFloat = isEmpty || focus || undefined;
+
+  console.log("label", value);
 
   return (
     <Box mr="xs">
@@ -34,12 +27,18 @@ export default function SearchField({ label, form }: SearchFieldPropsType) {
         placeholder=" . . ."
         disabled={pending}
         value={value}
-        onChange={handleOnChange as ChangeEventHandler<HTMLInputElement>}
-        onFocus={handleOnFocus}
-        onBlur={handleOnBlur}
+        onChange={(event) => {
+          setValue(event.target.value);
+        }}
+        onFocus={() => {
+          setFocus(true);
+        }}
+        onBlur={() => {
+          setFocus(false);
+        }}
         data-float={isFloat}
         labelProps={{ "data-float": isFloat }}
-        w={130}
+        w={{ base: "100%", md: 130 }}
         variant="unstyled"
         rightSectionPointerEvents={isEmpty ? "auto" : "none"}
         rightSection={
@@ -47,11 +46,15 @@ export default function SearchField({ label, form }: SearchFieldPropsType) {
             type="search"
             isEmpty={isEmpty}
             disabled={pending}
-            onReset={handleOnReset}
+            onReset={() => {
+              setValue("");
+            }}
           />
         }
       />
       <Divider size="sm" color={isFloat ? "indigo.4" : undefined} />
     </Box>
   );
-}
+});
+
+export default SearchField;

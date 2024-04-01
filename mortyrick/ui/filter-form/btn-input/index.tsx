@@ -1,13 +1,12 @@
 import { memo } from "react";
 import { CloseButton, ActionIcon } from "@mantine/core";
 import { IconPencilPlus, IconSelect } from "@tabler/icons-react";
-import type { MouseEventHandler } from "react";
 
 type BtnInputPropsType = {
   type: "search" | "select";
   isEmpty: boolean;
   disabled: boolean;
-  onReset: MouseEventHandler<HTMLButtonElement>;
+  onReset: () => void;
 };
 
 const BtnInput = memo(

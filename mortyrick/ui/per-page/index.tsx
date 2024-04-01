@@ -1,7 +1,7 @@
 "use client";
 
 import { memo } from "react";
-import { Pagination, Group, Progress, Divider, Stack } from "@mantine/core";
+import { Pagination, Group, Progress, Divider, Flex } from "@mantine/core";
 import usePerPage from "@/lib/hooks/use-per-page";
 import type { PageSearchParamsType, RouteParamsType } from "@/types/url-params";
 
@@ -31,7 +31,13 @@ const PerPage = memo(
     // };
 
     return (
-      <Stack align="center" gap="xs">
+      <Flex
+        justify={{ base: "space-between", md: "center" }}
+        align="center"
+        direction={{ base: "row", md: "column" }}
+        gap="xs"
+        w={{ base: "100%", md: "auto" }}
+      >
         <Group>
           {currentCount}
           <Divider orientation="vertical" size="md" />
@@ -56,7 +62,7 @@ const PerPage = memo(
           color="indigo.5"
           // getItemProps={getNextLink}
         />
-      </Stack>
+      </Flex>
     );
   }
 );

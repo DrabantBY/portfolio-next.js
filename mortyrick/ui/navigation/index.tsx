@@ -16,10 +16,10 @@ const Navigation = memo(({ place }: { place: "header" | "sidebar" }) => {
 
   return (
     <Flex
-      align={{ base: "flex-start", sm: "center" }}
-      direction={{ base: "column", sm: "row" }}
-      gap={{ base: 0, sm: "xs" }}
-      visibleFrom={place === "header" ? "sm" : undefined}
+      align={{ base: "flex-start", md: "center" }}
+      direction={{ base: "column", md: "row" }}
+      gap={{ base: 0, md: "xs" }}
+      visibleFrom={place === "header" ? "md" : undefined}
     >
       {routes.map((route, index) => (
         <RouterLink

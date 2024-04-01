@@ -1,12 +1,30 @@
 import { memo } from "react";
 import { useFormStatus } from "react-dom";
-import { ActionIcon } from "@mantine/core";
+import { ActionIcon, Button } from "@mantine/core";
 import { IconFilterSearch } from "@tabler/icons-react";
 
-const BtnFilter = memo(({ disabled }: { disabled: boolean }) => {
+type BtnFilterPropsType = {
+  isSidebar: boolean;
+};
+
+const BtnFilter = memo(({ isSidebar }: BtnFilterPropsType) => {
   const { pending } = useFormStatus();
 
-  return (
+  return isSidebar ? (
+    <Button
+      type="submit"
+      size="xs"
+      variant="light"
+      w={104}
+      aria-label="Form submit"
+      loading={pending}
+      disabled={pending}
+      c={pending ? undefined : "indigo.7"}
+      leftSection={<IconFilterSearch size={20} />}
+    >
+      Filter
+    </Button>
+  ) : (
     <ActionIcon
       component="button"
       type="submit"
@@ -15,8 +33,8 @@ const BtnFilter = memo(({ disabled }: { disabled: boolean }) => {
       variant="subtle"
       aria-label="Form submit"
       loading={pending}
-      disabled={disabled || pending}
-      c={disabled ? undefined : "indigo.7"}
+      disabled={pending}
+      c={pending ? undefined : "indigo.7"}
     >
       <IconFilterSearch />
     </ActionIcon>
