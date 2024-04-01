@@ -25,7 +25,7 @@ export default function BtnBurger() {
         closeButtonProps={{ "aria-label": "Close sidebar" }}
       >
         <Navigation place="sidebar" />
-        {route && <FilterForm key={route} route={route} isSidebar={true} />}
+        {route ? <FilterForm route={route} isSidebar={true} /> : null}
       </Drawer>
       <Burger
         opened={false}
