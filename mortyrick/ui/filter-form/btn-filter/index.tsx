@@ -15,7 +15,7 @@ const BtnFilter = memo(({ isSidebar }: BtnFilterPropsType) => {
       type="submit"
       size="xs"
       variant="light"
-      w={104}
+      w={208}
       aria-label="Form submit"
       loading={pending}
       disabled={pending}
@@ -28,8 +28,8 @@ const BtnFilter = memo(({ isSidebar }: BtnFilterPropsType) => {
     <ActionIcon
       component="button"
       type="submit"
-      size="md"
-      radius={0}
+      size="xl"
+      radius="xs"
       variant="subtle"
       aria-label="Form submit"
       loading={pending}

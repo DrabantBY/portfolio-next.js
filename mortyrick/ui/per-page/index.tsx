@@ -46,7 +46,7 @@ const PerPage = memo(
             size="xl"
             w={100}
             value={progressValue}
-            color="yellow.7"
+            color="indigo.5"
           />
           <Divider orientation="vertical" size="md" />
           {count}

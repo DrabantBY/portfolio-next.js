@@ -2,11 +2,10 @@
 
 import { memo } from "react";
 import { useSearchParams } from "next/navigation";
-import { ActionIcon, Box, Button, Flex } from "@mantine/core";
+import { Box, Flex } from "@mantine/core";
 import SearchField from "./search-field";
 import SelectField from "./select-field";
 import BtnFilter from "./btn-filter";
-import BtnReset from "./btn-reset";
 import filterDataAction from "@/lib/actions/filter-action";
 import type { RouteParamsType } from "@/types/url-params";
 
@@ -24,6 +23,7 @@ const FilterForm = memo(({ route, isSidebar }: FilterFormPropsType) => {
         <Flex
           direction={{ base: "column", md: "row" }}
           gap={{ base: "xs", md: 0 }}
+          align={{ base: "flex-start", md: "center" }}
         >
           <SearchField
             label="name"
@@ -68,17 +68,7 @@ const FilterForm = memo(({ route, isSidebar }: FilterFormPropsType) => {
             />
           ) : null}
 
-          {isSidebar ? (
-            <Button.Group orientation="horizontal">
-              <BtnFilter isSidebar={isSidebar} />
-              <BtnReset isSidebar={isSidebar} />
-            </Button.Group>
-          ) : (
-            <ActionIcon.Group orientation="vertical">
-              <BtnFilter isSidebar={isSidebar} />
-              <BtnReset isSidebar={isSidebar} />
-            </ActionIcon.Group>
-          )}
+          <BtnFilter isSidebar={isSidebar} />
         </Flex>
       </form>
     </Box>

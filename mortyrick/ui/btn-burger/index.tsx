@@ -1,7 +1,7 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import { Burger, Drawer } from "@mantine/core";
+import { Burger, Divider, Drawer, Group, Space } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import Navigation from "../navigation";
 import FilterForm from "../filter-form";
@@ -17,7 +17,13 @@ export default function BtnBurger() {
         hiddenFrom="md"
         opened={opened}
         onClose={close}
-        title="Navigation/Filter"
+        title={
+          <Group gap="xs">
+            Navigation
+            <Divider size="md" orientation="vertical" />
+            Filter
+          </Group>
+        }
         position="right"
         size={250}
         offset={5}
@@ -25,7 +31,10 @@ export default function BtnBurger() {
         closeButtonProps={{ "aria-label": "Close sidebar" }}
       >
         <Navigation place="sidebar" />
-        {route ? <FilterForm route={route} isSidebar={true} /> : null}
+        <Space h="xl" />
+        {route ? (
+          <FilterForm key={route} route={route} isSidebar={true} />
+        ) : null}
       </Drawer>
       <Burger
         opened={false}
