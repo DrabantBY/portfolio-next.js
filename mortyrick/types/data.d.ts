@@ -12,3 +12,7 @@ export type DataPageType = {
   info: InfoType;
   results: ResultsDataType;
 };
+
+export type DataErrorType = {
+  error: string;
+};
