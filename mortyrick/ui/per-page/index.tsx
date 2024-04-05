@@ -19,7 +19,7 @@ const PerPage = memo(
   ({ route, searchParams, total, count, amount }: PerPagePropsType) => {
     const { page, setPage } = usePerPage(route, searchParams);
     const currentCount = (page - 1) * pageSize + amount;
-    const progressValue = (currentCount / count) * 100;
+    const progressValue = (currentCount / (count || 1)) * 100;
 
     // const getNextLink = (page: number) => {
     //   const href = setHref(page);

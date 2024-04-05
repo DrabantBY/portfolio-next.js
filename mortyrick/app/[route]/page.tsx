@@ -22,8 +22,7 @@ export async function generateMetadata({
 export default async function Page(routeParams: UrlParamsType) {
   const suspenseKey = new URLSearchParams(routeParams.searchParams);
   const { route } = routeParams.params;
-  const data = await fetchDataPage(routeParams);
-  const isEmpty = "error" in data;
+  const { info, results } = await fetchDataPage(routeParams);
 
   return (
     <Container size="xl">
@@ -35,22 +34,16 @@ export default async function Page(routeParams: UrlParamsType) {
         mb="xl"
       >
         <FilterForm route={route} isSidebar={false} />
-        {!isEmpty ? (
-          <PerPage
-            route={route}
-            searchParams={routeParams.searchParams}
-            total={data.info.pages}
-            count={data.info.count}
-            amount={data.results.length}
-          />
-        ) : null}
+        <PerPage
+          route={route}
+          searchParams={routeParams.searchParams}
+          total={info.pages}
+          count={info.count}
+          amount={results.length}
+        />
       </Flex>
       <Suspense key={suspenseKey.toString()} fallback={<Spinner />}>
-        {isEmpty ? (
-          <h1>{data.error}</h1>
-        ) : (
-          <Cards results={data.results} route={route} />
-        )}
+        <Cards results={results} route={route} />
       </Suspense>
     </Container>
   );
