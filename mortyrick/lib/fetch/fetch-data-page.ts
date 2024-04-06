@@ -7,15 +7,15 @@ const fetchDataPage = async (
 ): Promise<DataPageType> => {
   const url = handleUrlParams(routeParams);
   const response = await fetch(url);
-  if (!response.ok && response.status === 404) {
-    const { error } = await response.json();
-    throw new Error(error);
+
+  if (!response.ok) {
+    return {
+      info: { count: 0, pages: 0, next: null, prev: null },
+      results: [],
+    };
   }
-  if (!response.ok && response.status !== 404) {
-    const message = `${response.status}: ${response.statusText}`;
-    throw new Error(message);
-  }
-  const data: Promise<DataPageType> = await response.json();
+
+  const data: DataPageType = await response.json();
   return data;
 };
 

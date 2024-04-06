@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
 import { Container } from "@mantine/core";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Morty & Rick",
