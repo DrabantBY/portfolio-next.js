@@ -1,6 +1,16 @@
-import { handleUrlParams } from "@/lib/utils/handle-url-params";
+import handleUrlParams from "@/lib/utils/handle-url-params";
 import type { UrlParamsType } from "@/types/url-params";
 import type { DataPageType } from "@/types/data";
+
+const emptyData: DataPageType = {
+  info: {
+    count: 0,
+    pages: 0,
+    next: null,
+    prev: null,
+  },
+  results: [],
+};
 
 const fetchDataPage = async (
   routeParams: UrlParamsType
@@ -9,10 +19,7 @@ const fetchDataPage = async (
   const response = await fetch(url);
 
   if (!response.ok) {
-    return {
-      info: { count: 0, pages: 0, next: null, prev: null },
-      results: [],
-    };
+    return emptyData;
   }
 
   const data: DataPageType = await response.json();

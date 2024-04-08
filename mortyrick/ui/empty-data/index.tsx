@@ -5,7 +5,7 @@ import { Card, Center, Image, Title } from "@mantine/core";
 import imgNotFound from "@/public/not-found.png";
 
 const EmptyData = () => (
-  <Center>
+  <Center mt={50}>
     <Card maw={400} shadow="md">
       <Card.Section>
         <Image

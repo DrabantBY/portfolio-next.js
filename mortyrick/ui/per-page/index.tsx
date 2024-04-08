@@ -35,7 +35,8 @@ const PerPage = memo(
         justify={{ base: "space-between", md: "center" }}
         align="center"
         direction={{ base: "row", md: "column" }}
-        gap="xs"
+        wrap="wrap"
+        gap="lg"
         w={{ base: "100%", md: "auto" }}
       >
         <Group>
