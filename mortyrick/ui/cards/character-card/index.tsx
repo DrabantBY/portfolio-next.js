@@ -1,27 +1,39 @@
-"use client";
-
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-
-import { Paper, Badge, BackgroundImage } from "@mantine/core";
-
+import NextImage from "next/image";
+import { Badge, Card, Image } from "@mantine/core";
 import type { CharacterType } from "@/types/character";
+import { RouteParamsType } from "@/types/url-params";
 
-export default function CharacterCard({ id, image, species }: CharacterType) {
-  const route = usePathname();
+type CharacterCardPropsType = {
+  route: RouteParamsType;
+  result: CharacterType;
+};
+
+export default function CharacterCard({
+  route,
+  result,
+}: CharacterCardPropsType) {
   return (
-    <Paper
-      shadow="md"
-      p="xs"
+    <Card
+      shadow="lg"
+      padding={0}
+      withBorder
       component={Link}
-      href={`${route}/${id}`}
-      className="background-theme"
+      href={`${route}/${result.id}`}
     >
-      <BackgroundImage src={image} h={150} pl={5}>
-        <Badge variant="dot" radius="sm" size="sm">
-          {species}
-        </Badge>
-      </BackgroundImage>
-    </Paper>
+      <Badge variant="dot" radius="sm" size="sm" my="xs" ml="auto" mr="xs">
+        {result.status} {result.species}
+      </Badge>
+
+      <Image
+        component={NextImage}
+        src={result.image}
+        alt="Character image"
+        height={300}
+        width={300}
+        loading="lazy"
+        style={{ width: "100%", height: "auto" }}
+      />
+    </Card>
   );
 }

@@ -15,13 +15,9 @@ export default async function Cards({ route, results }: CardsPropsType) {
   switch (route) {
     case "character":
       return (
-        <SimpleGrid
-          cols={{ base: 2, xs: 3, sm: 4, lg: 5 }}
-          spacing="lg"
-          verticalSpacing="lg"
-        >
+        <SimpleGrid cols={{ base: 2, xs: 3, sm: 4, lg: 5 }} spacing="xl">
           {results.map((result) => (
-            <CharacterCard key={result.id} {...result} />
+            <CharacterCard key={result.id} route={route} result={result} />
           ))}
         </SimpleGrid>
       );

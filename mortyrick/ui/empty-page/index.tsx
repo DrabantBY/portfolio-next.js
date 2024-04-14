@@ -15,26 +15,22 @@ const EmptyPage = () => {
   }, []);
 
   return (
-    <Card maw={600} shadow="md">
-      <Card.Section>
-        <Image
-          component={NextImage}
-          src={imgDefaultError}
-          alt="not found page"
-          h={350}
-          priority
-        />
-      </Card.Section>
+    <Card shadow="md" padding={0} maw={800}>
+      <Image
+        component={NextImage}
+        src={imgDefaultError}
+        alt="not found page"
+        priority
+      />
 
       <Badge
         h="fit-content"
         w="100%"
         fz="xl"
-        my="md"
         mx="auto"
         variant="light"
         color="yellow.7"
-        radius="sm"
+        radius={0}
         leftSection={<IconError404 size={48} />}
       >
         : page not found
@@ -44,6 +40,7 @@ const EmptyPage = () => {
         variant="light"
         fz="lg"
         tt="uppercase"
+        radius={0}
         onClick={goBack}
         leftSection={<IconArrowBigLeftLine />}
       >
