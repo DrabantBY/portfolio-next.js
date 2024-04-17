@@ -4,7 +4,6 @@ import { Container, Flex } from "@mantine/core";
 import FilterForm from "@/ui/filter-form";
 import PerPage from "@/ui/per-page";
 import Cards from "@/ui/cards";
-import EmptyData from "@/ui/empty-data";
 import Spinner from "@/ui/spinner";
 import fetchDataPage from "@/lib/fetch/fetch-data-page";
 import type { UrlParamsType } from "@/types/url-params";
