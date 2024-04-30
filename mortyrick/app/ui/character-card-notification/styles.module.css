@@ -1,0 +1,14 @@
+.icon {
+  background-color: transparent;
+}
+
+.root {
+  &:hover {
+    background-color: light-dark(
+      var(--mantine-color-indigo-0),
+      var(--mantine-color-dark-4)
+    );
+  }
+
+  text-decoration: none;
+}

@@ -1,0 +1,32 @@
+main {
+  position: relative;
+  flex-grow: 1;
+}
+
+.center {
+  transform: translate(-50%, -50%);
+}
+
+.background-theme {
+  background-color: light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-5));
+}
+
+.dark {
+  @mixin dark {
+    display: none;
+  }
+
+  @mixin light {
+    display: block;
+  }
+}
+
+.light {
+  @mixin light {
+    display: none;
+  }
+
+  @mixin dark {
+    display: block;
+  }
+}
