@@ -8,10 +8,10 @@ export default function Header() {
   return (
     <header>
       <Container size="xl" py="xs">
-        <Group justify="space-between">
+        <Group justify="space-between" gap="xs">
           <LogoLink />
           <Navigation place="header" />
-          <Group>
+          <Group gap="xs">
             <BtnTheme />
             <BtnBurger />
           </Group>

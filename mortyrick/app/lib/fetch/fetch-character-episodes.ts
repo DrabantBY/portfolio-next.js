@@ -11,7 +11,7 @@ const fetchCharacterEpisodes = async (
     link.replaceAll(`${process.env.baseUrl}episode/`, '')
   );
 
-  const url = `${process.env.baseUrl}/episode/${idArr}`;
+  const url = `${process.env.baseUrl}episode/${idArr}`;
 
   const response = await fetch(url);
 
@@ -19,11 +19,14 @@ const fetchCharacterEpisodes = async (
     return [];
   }
 
-  const data: EpisodeDataType[] = await response.json();
+  const data: EpisodeDataType[] | EpisodeDataType = await response.json();
 
-  const episodes = data.map(({ id, episode }) => ({ id, episode }));
+  if (!Array.isArray(data)) {
+    const { id, episode } = data;
+    return [{ id, episode }];
+  }
 
-  return episodes;
+  return data.map(({ id, episode }) => ({ id, episode }));
 };
 
 export default fetchCharacterEpisodes;

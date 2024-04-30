@@ -13,7 +13,7 @@ const CharacterCardDetails = memo(async ({ data }: { data: CharacterDataType }) 
     <Container size="xl">
       <Center>
         <Paper shadow="xl" p="xl">
-          <SimpleGrid cols={2}>
+          <SimpleGrid cols={{ base: 1, xs: 2 }}>
             <CharacterCardNotification
               name={data.name}
               species={data.species}
@@ -23,10 +23,10 @@ const CharacterCardDetails = memo(async ({ data }: { data: CharacterDataType }) 
               origin={data.origin.name}
               location={data.location.name}
             />
-            <Stack gap="xs" justify="space-between">
+            <Box>
               <CharacterCardImage src={data.image} />
               <CharacterCardEpisodes episodes={episodes} />
-            </Stack>
+            </Box>
           </SimpleGrid>
         </Paper>
       </Center>

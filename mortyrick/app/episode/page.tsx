@@ -19,17 +19,17 @@ export default async function PageEpisode({
 }: {
   searchParams: PageEpisodeSearchParamsType;
 }) {
-  const { info, results } = await fetchEpisode(searchParams);
+  const data = await fetchEpisode(searchParams);
   const suspenseKey = new URLSearchParams(searchParams);
 
   return (
     <Container size="xl">
       <Flex justify={{ md: 'space-between' }} align="center" wrap="wrap" gap="md" mb="xl">
         <FormFilterEpisode sidebar={false} />
-        {results.length === 0 ? null : <DataPagination total={info.pages} />}
+        {data ? <DataPagination total={data.info.pages} /> : null}
       </Flex>
       <Suspense key={suspenseKey.toString()} fallback={<Spinner />}>
-        {results.length === 0 ? <DataEmpty /> : <EpisodeCardList results={results} />}
+        {data ? <EpisodeCardList results={data.results} /> : <DataEmpty />}
       </Suspense>
     </Container>
   );

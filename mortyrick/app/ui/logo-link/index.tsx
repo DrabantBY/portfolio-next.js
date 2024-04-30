@@ -27,6 +27,7 @@ export default function LogoLink() {
       w="fit-content"
       ta="center"
       tt="uppercase"
+      p="xs"
     />
   );
 }

@@ -24,7 +24,7 @@ const DataPagination = memo(({ total }: { total: number }) => {
       size="sm"
       radius="sm"
       withControls={false}
-      color="indigo.5"
+      color="indigo.4"
       // getItemProps={getNextLink}
     />
   );

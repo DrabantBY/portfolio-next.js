@@ -19,17 +19,17 @@ export default async function PageLocation({
 }: {
   searchParams: PageLocationSearchParamsType;
 }) {
-  const { info, results } = await fetchLocation(searchParams);
+  const data = await fetchLocation(searchParams);
   const suspenseKey = new URLSearchParams(searchParams);
 
   return (
     <Container size="xl">
       <Flex justify={{ md: 'space-between' }} align="center" wrap="wrap" gap="md" mb="xl">
         <FormFilterLocation sidebar={false} />
-        {results.length === 0 ? null : <DataPagination total={info.pages} />}
+        {data ? <DataPagination total={data.info.pages} /> : null}
       </Flex>
       <Suspense key={suspenseKey.toString()} fallback={<Spinner />}>
-        {results.length === 0 ? <DataEmpty /> : <LocationCardList results={results} />}
+        {data ? <LocationCardList results={data.results} /> : <DataEmpty />}
       </Suspense>
     </Container>
   );

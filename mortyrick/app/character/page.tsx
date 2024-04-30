@@ -19,17 +19,17 @@ export default async function PageCharacter({
 }: {
   searchParams: PageCharacterSearchParamsType;
 }) {
-  const { info, results } = await fetchCharacter(searchParams);
+  const data = await fetchCharacter(searchParams);
   const suspenseKey = new URLSearchParams(searchParams);
 
   return (
     <Container size="xl">
       <Flex justify={{ md: 'space-between' }} align="center" wrap="wrap" gap="md" mb="xl">
         <FormFilterCharacter sidebar={false} />
-        {results.length === 0 ? null : <DataPagination total={info.pages} />}
+        {data ? <DataPagination total={data.info.pages} /> : null}
       </Flex>
       <Suspense key={suspenseKey.toString()} fallback={<Spinner />}>
-        {results.length === 0 ? <DataEmpty /> : <CharacterCardList results={results} />}
+        {data ? <CharacterCardList results={data.results} /> : <DataEmpty />}
       </Suspense>
     </Container>
   );
