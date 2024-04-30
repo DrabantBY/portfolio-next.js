@@ -54,3 +54,8 @@ export type LocationFetchDataType = {
   info: InfoDataType;
   results: LocationDataType[];
 };
+
+export type CharacterEpisodeListType = Array<{
+  id: number;
+  episode: string;
+}>;

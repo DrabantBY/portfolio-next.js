@@ -18,24 +18,49 @@ type CharacterCardNotificationPropsType = {
 
 const CharacterCardNotification = memo((props: CharacterCardNotificationPropsType) => {
   return (
-    <Stack>
-      <Notification radius="xs" title="Name" withCloseButton={false} withBorder>
+    <Stack gap="xs">
+      <Notification
+        radius="xs"
+        title="Name"
+        withCloseButton={false}
+        withBorder
+        color="indigo.4">
         {props.name}
       </Notification>
 
-      <Notification radius="xs" title="Species" withCloseButton={false} withBorder>
+      <Notification
+        radius="xs"
+        title="Species"
+        withCloseButton={false}
+        withBorder
+        color="indigo.4">
         {props.species}
       </Notification>
 
-      <Notification radius="xs" title="Gender" withCloseButton={false} withBorder>
+      <Notification
+        radius="xs"
+        title="Gender"
+        withCloseButton={false}
+        withBorder
+        color="indigo.4">
         {props.gender}
       </Notification>
 
-      <Notification radius="xs" title="Status" withCloseButton={false} withBorder>
+      <Notification
+        radius="xs"
+        title="Status"
+        withCloseButton={false}
+        withBorder
+        color="indigo.4">
         {props.status}
       </Notification>
 
-      <Notification radius="xs" title="Type" withCloseButton={false} withBorder>
+      <Notification
+        radius="xs"
+        title="Type"
+        withCloseButton={false}
+        withBorder
+        color="indigo.4">
         {props.type || 'unknown'}
       </Notification>
 
@@ -50,7 +75,7 @@ const CharacterCardNotification = memo((props: CharacterCardNotificationPropsTyp
         title="Origin"
         withCloseButton
         closeButtonProps={{
-          icon: <IconExternalLink color="var(--mantine-color-indigo-4)" />,
+          icon: <IconExternalLink color="var(--mantine-color-indigo-3)" />,
         }}
         radius="xs"
         withBorder>
@@ -68,7 +93,7 @@ const CharacterCardNotification = memo((props: CharacterCardNotificationPropsTyp
         title="Location"
         withCloseButton
         closeButtonProps={{
-          icon: <IconExternalLink color="var(--mantine-color-indigo-4)" />,
+          icon: <IconExternalLink color="var(--mantine-color-indigo-3)" />,
         }}
         radius="xs"
         withBorder>

@@ -1,10 +1,14 @@
 import { memo } from 'react';
-import { Center, Container, Paper, SimpleGrid } from '@mantine/core';
+import { Box, Center, Container, Paper, SimpleGrid, Stack } from '@mantine/core';
 import CharacterCardImage from '../character-card-image';
 import CharacterCardNotification from '../character-card-notification';
+import CharacterCardEpisodes from '../character-card-episodes';
+import fetchCharacterEpisodes from '@/app/lib/fetch/fetch-character-episodes';
 import type { CharacterDataType } from '@/app/types/data';
 
-const CharacterCardDetails = memo(({ data }: { data: CharacterDataType }) => {
+const CharacterCardDetails = memo(async ({ data }: { data: CharacterDataType }) => {
+  const episodes = await fetchCharacterEpisodes(data.episode);
+
   return (
     <Container size="xl">
       <Center>
@@ -19,7 +23,10 @@ const CharacterCardDetails = memo(({ data }: { data: CharacterDataType }) => {
               origin={data.origin.name}
               location={data.location.name}
             />
-            <CharacterCardImage src={data.image} />
+            <Stack gap="xs" justify="space-between">
+              <CharacterCardImage src={data.image} />
+              <CharacterCardEpisodes episodes={episodes} />
+            </Stack>
           </SimpleGrid>
         </Paper>
       </Center>

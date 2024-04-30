@@ -9,7 +9,6 @@ const CharacterCardItem = memo(({ result }: { result: CharacterDataType }) => {
   return (
     <Paper
       classNames={classes}
-      pos="relative"
       shadow="md"
       p="xs"
       withBorder

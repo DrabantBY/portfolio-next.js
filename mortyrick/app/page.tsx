@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: 'data from https://rickandmortyapi.com/',
 };
 
-export default function MainPage() {
+export default async function MainPage() {
   return (
     <Container size="xl">
       <h1>Hello NEXT</h1>
