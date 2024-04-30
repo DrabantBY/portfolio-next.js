@@ -3,7 +3,7 @@
 import { memo } from 'react';
 import Link from 'next/link';
 import { Notification, Stack, ThemeIcon } from '@mantine/core';
-import { IconHome, IconMapPin } from '@tabler/icons-react';
+import { IconHome, IconMapPin, IconExternalLink } from '@tabler/icons-react';
 import classes from './styles.module.css';
 
 type CharacterCardNotificationPropsType = {
@@ -48,7 +48,10 @@ const CharacterCardNotification = memo((props: CharacterCardNotificationPropsTyp
           </ThemeIcon>
         }
         title="Origin"
-        withCloseButton={false}
+        withCloseButton
+        closeButtonProps={{
+          icon: <IconExternalLink color="var(--mantine-color-indigo-4)" />,
+        }}
         radius="xs"
         withBorder>
         {props.origin}
@@ -63,7 +66,10 @@ const CharacterCardNotification = memo((props: CharacterCardNotificationPropsTyp
           </ThemeIcon>
         }
         title="Location"
-        withCloseButton={false}
+        withCloseButton
+        closeButtonProps={{
+          icon: <IconExternalLink color="var(--mantine-color-indigo-4)" />,
+        }}
         radius="xs"
         withBorder>
         {props.location}
