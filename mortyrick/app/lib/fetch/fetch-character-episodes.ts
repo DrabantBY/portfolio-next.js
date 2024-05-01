@@ -7,11 +7,7 @@ const fetchCharacterEpisodes = async (
     return [];
   }
 
-  const idArr = linkArr.map((link) =>
-    link.replaceAll(`${process.env.baseUrl}episode/`, '')
-  );
-
-  const url = `${process.env.baseUrl}episode/${idArr}`;
+  const url = `${process.env.baseUrl}/episode/${linkArr}`;
 
   const response = await fetch(url);
 

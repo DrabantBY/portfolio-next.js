@@ -20,8 +20,8 @@ const CharacterCardDetails = memo(async ({ data }: { data: CharacterDataType }) 
               gender={data.gender}
               status={data.status}
               type={data.type}
-              origin={data.origin.name}
-              location={data.location.name}
+              origin={data.origin}
+              location={data.location}
             />
             <Box>
               <CharacterCardImage src={data.image} />

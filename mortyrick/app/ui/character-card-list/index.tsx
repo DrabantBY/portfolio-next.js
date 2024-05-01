@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { SimpleGrid } from '@mantine/core';
-import type { CharacterDataType } from '@/app/types/data';
 import CharacterCardItem from '../character-card-item';
+import type { CharacterDataType } from '@/app/types/data';
 
 const CharacterCardList = memo(async ({ results }: { results: CharacterDataType[] }) => {
   return (

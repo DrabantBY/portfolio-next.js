@@ -12,8 +12,8 @@ type CharacterCardNotificationPropsType = {
   gender: string;
   status: string;
   type: string;
-  origin: string;
-  location: string;
+  origin: { name: string; url: string };
+  location: { name: string; url: string };
 };
 
 const CharacterCardNotification = memo((props: CharacterCardNotificationPropsType) => {
@@ -65,39 +65,39 @@ const CharacterCardNotification = memo((props: CharacterCardNotificationPropsTyp
       </Notification>
 
       <Notification
-        renderRoot={(propsRoot) => <Link href="https://mantine.dev/" {...propsRoot} />}
+        renderRoot={(propsRoot) => <Link href={props.origin.url} {...propsRoot} />}
         classNames={classes}
         icon={
           <ThemeIcon variant="light">
             <IconHome />
           </ThemeIcon>
         }
-        title="Origin"
+        title="Origin location"
         withCloseButton
         closeButtonProps={{
           icon: <IconExternalLink color="var(--mantine-color-indigo-3)" />,
         }}
         radius="xs"
         withBorder>
-        {props.origin}
+        {props.origin.name}
       </Notification>
 
       <Notification
-        renderRoot={(propsRoot) => <Link href="https://mantine.dev/" {...propsRoot} />}
+        renderRoot={(propsRoot) => <Link href={props.location.url} {...propsRoot} />}
         classNames={classes}
         icon={
           <ThemeIcon variant="light">
             <IconMapPin />
           </ThemeIcon>
         }
-        title="Location"
+        title="Last location"
         withCloseButton
         closeButtonProps={{
           icon: <IconExternalLink color="var(--mantine-color-indigo-3)" />,
         }}
         radius="xs"
         withBorder>
-        {props.location}
+        {props.location.name}
       </Notification>
     </Stack>
   );
