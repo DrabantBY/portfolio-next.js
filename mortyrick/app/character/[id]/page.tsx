@@ -1,7 +1,8 @@
+import { Center, Container } from '@mantine/core';
 import CharacterCardDetails from '@/app/ui/character-card-details';
-
-import fetchCharacterDetails from '@/app/lib/fetch/fetch-character-details';
 import DataEmpty from '@/app/ui/data-empty';
+import fetchCharacterDetails from '@/app/lib/fetch/fetch-character-details';
+import fetchCharacterEpisodes from '@/app/lib/fetch/fetch-character-episodes';
 
 export default async function PageCharacterDetails({
   params,
@@ -14,5 +15,12 @@ export default async function PageCharacterDetails({
     return <DataEmpty />;
   }
 
-  return <CharacterCardDetails data={data} />;
+  const episodes = await fetchCharacterEpisodes(data.episode);
+  return (
+    <Container size="xl">
+      <Center>
+        <CharacterCardDetails data={data} episodes={episodes} />
+      </Center>
+    </Container>
+  );
 }
