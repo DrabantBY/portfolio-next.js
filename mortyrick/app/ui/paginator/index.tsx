@@ -2,10 +2,10 @@
 
 import { memo } from 'react';
 import { Pagination } from '@mantine/core';
-import usePerPage from '@/app/lib/hooks/use-per-page';
+import usePaginator from '@/app/lib/hooks/use-paginator';
 
 const Paginator = memo(({ total }: { total: number }) => {
-  const { page, setPage } = usePerPage();
+  const { page, setPage } = usePaginator();
 
   return (
     <Pagination
