@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { Suspense } from 'react';
 import { Container, Flex } from '@mantine/core';
 import FormFilterCharacter from '../ui/form-filter-character';
-import DataPagination from '../ui/data-pagination';
+import Paginator from '../ui/paginator';
 import CharacterCardList from '../ui/character-card-list';
 import Spinner from '../ui/spinner';
 import DataEmpty from '../ui/data-empty';
@@ -26,7 +26,7 @@ export default async function PageCharacter({
     <Container size="xl">
       <Flex justify={{ md: 'space-between' }} align="center" wrap="wrap" gap="md" mb="xl">
         <FormFilterCharacter sidebar={false} />
-        {data ? <DataPagination total={data.info.pages} /> : null}
+        {data ? <Paginator total={data.info.pages} /> : null}
       </Flex>
       <Suspense key={suspenseKey.toString()} fallback={<Spinner />}>
         {data ? <CharacterCardList results={data.results} /> : <DataEmpty />}

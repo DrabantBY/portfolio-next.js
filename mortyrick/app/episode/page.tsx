@@ -3,7 +3,7 @@ import { Suspense } from 'react';
 import { Container, Flex } from '@mantine/core';
 import FormFilterEpisode from '../ui/form-filter-episode';
 import EpisodeCardList from '../ui/episode-card-list';
-import DataPagination from '../ui/data-pagination';
+import Paginator from '../ui/paginator';
 import DataEmpty from '../ui/data-empty';
 import Spinner from '../ui/spinner';
 import fetchEpisode from '../lib/fetch/fetch-episode';
@@ -26,7 +26,7 @@ export default async function PageEpisode({
     <Container size="xl">
       <Flex justify={{ md: 'space-between' }} align="center" wrap="wrap" gap="md" mb="xl">
         <FormFilterEpisode sidebar={false} />
-        {data ? <DataPagination total={data.info.pages} /> : null}
+        {data ? <Paginator total={data.info.pages} /> : null}
       </Flex>
       <Suspense key={suspenseKey.toString()} fallback={<Spinner />}>
         {data ? <EpisodeCardList results={data.results} /> : <DataEmpty />}

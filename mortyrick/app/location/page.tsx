@@ -3,7 +3,7 @@ import { Suspense } from 'react';
 import { Container, Flex } from '@mantine/core';
 import FormFilterLocation from '../ui/form-filter-location';
 import LocationCardList from '../ui/location-card-list';
-import DataPagination from '../ui/data-pagination';
+import Paginator from '../ui/paginator';
 import DataEmpty from '../ui/data-empty';
 import Spinner from '../ui/spinner';
 import fetchLocation from '../lib/fetch/fetch-location';
@@ -26,7 +26,7 @@ export default async function PageLocation({
     <Container size="xl">
       <Flex justify={{ md: 'space-between' }} align="center" wrap="wrap" gap="md" mb="xl">
         <FormFilterLocation sidebar={false} />
-        {data ? <DataPagination total={data.info.pages} /> : null}
+        {data ? <Paginator total={data.info.pages} /> : null}
       </Flex>
       <Suspense key={suspenseKey.toString()} fallback={<Spinner />}>
         {data ? <LocationCardList results={data.results} /> : <DataEmpty />}
